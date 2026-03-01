@@ -1,0 +1,12 @@
+[
+  {
+    "text": "快速开始",
+    "link": "/guide/",
+    "activeMatch": "/guide/"
+  },
+  {
+      "text": "技术文档",
+      "link": "/dev/",
+      "activeMatch": "/dev/"
+  }
+]
