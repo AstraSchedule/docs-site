@@ -1,1 +1,23 @@
-["index"]
+[
+  "index",
+  {
+    "type": "dir-section-header",
+    "name": "install",
+    "label": "安装指南",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir-section-header",
+    "name": "configure",
+    "label": "配置相关",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "section-header",
+    "label": "功能使用"
+  },
+  "operations",
+  "faq"
+]

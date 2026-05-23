@@ -8,5 +8,10 @@
       "text": "技术文档",
       "link": "/dev/",
       "activeMatch": "/dev/"
+  },
+  {
+      "text": "致谢",
+      "link": "/thanks",
+      "activeMatch": "/thanks"
   }
 ]
