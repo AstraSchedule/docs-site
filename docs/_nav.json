@@ -5,13 +5,28 @@
     "activeMatch": "/guide/"
   },
   {
-      "text": "技术文档",
-      "link": "/dev/",
-      "activeMatch": "/dev/"
+    "text": "用户手册",
+    "link": "/manual/",
+    "activeMatch": "/manual/"
   },
   {
-      "text": "致谢",
-      "link": "/thanks",
-      "activeMatch": "/thanks"
+    "text": "运维手册",
+    "link": "/administrator/",
+    "activeMatch": "/administrator/"
+  },
+  {
+    "text": "开发指南",
+    "link": "/dev/",
+    "activeMatch": "/dev/"
+  },
+  {
+    "text": "常见问题",
+    "link": "/faq/",
+    "activeMatch": "/faq/"
+  },
+  {
+    "text": "致谢",
+    "link": "/thanks",
+    "activeMatch": "/thanks"
   }
 ]

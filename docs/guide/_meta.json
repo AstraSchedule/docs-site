@@ -2,22 +2,23 @@
   "index",
   {
     "type": "dir-section-header",
-    "name": "install",
-    "label": "安装指南",
+    "name": "lowcost",
+    "label": "极低成本外网部署",
     "collapsible": true,
     "collapsed": false
   },
   {
     "type": "dir-section-header",
-    "name": "configure",
-    "label": "配置相关",
+    "name": "intranet",
+    "label": "学校内网部署",
     "collapsible": true,
     "collapsed": false
   },
   {
-    "type": "section-header",
-    "label": "功能使用"
-  },
-  "operations",
-  "faq"
+    "type": "dir-section-header",
+    "name": "production",
+    "label": "外网高并发部署",
+    "collapsible": true,
+    "collapsed": false
+  }
 ]
