@@ -1,1 +1,23 @@
-["index", "schedule", "countdown", "weather", "banner", "autorun", "backup", "client", "admin"]
+[
+  "index",
+  "schedule",
+  "countdown",
+  "weather",
+  "banner",
+  "autorun",
+  "backup",
+  {
+    "type": "dir-section-header",
+    "name": "client",
+    "label": "客户端使用",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir-section-header",
+    "name": "admin",
+    "label": "管理后台操作指南",
+    "collapsible": true,
+    "collapsed": false
+  }
+]
