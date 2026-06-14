@@ -1,0 +1,11 @@
+{
+  "keys": [
+    {
+      "kty": "EC",
+      "x": "mXr5rSPaK-HrJQjiC7anlLyj0lcNi_KMuyA8tkDvXI4",
+      "y": "eB-9KhbN_GvpT5XTUDX_GgOF5r1HYiFZoBrn3e4gSO4",
+      "crv": "P-256",
+      "kid": "astra-docs-2026"
+    }
+  ]
+}
