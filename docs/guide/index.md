@@ -56,4 +56,4 @@ N = GitHub Action 序号
 
 ## 关于文档
 
-本文档使用 AI 辅助编写，未经审核的页面均已添加 DANGER 标识。如果无法解决问题或需要协助部署，可邮箱联系：kuohu233@qq.com
+本文档使用 AI 辅助编写，未经审核的页面均已添加 DANGER 标识。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
