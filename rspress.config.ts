@@ -29,7 +29,7 @@ export default defineConfig({
       categoryId: 'DIC_kwDOLu9Xes4C-nET',
     }),
     pluginSitemap({
-      hostname: 'https://astra.khbit.cn',
+      siteUrl: 'https://getastra.cn',
     }),
   ]
 });
