@@ -2,6 +2,7 @@
 .DS_Store
 *.local
 *.log*
+*.pem
 
 # Other lockfiles (project uses bun)
 pnpm-lock.yaml
