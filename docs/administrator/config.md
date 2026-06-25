@@ -234,3 +234,34 @@ ASTRA_DB_TYPE=sqlite
 ASTRA_DB_PATH=/data/astra_schedule.db
 ASTRA_RUN_SERVERLESS=true
 ```
+
+### 阿里云函数计算（JSON 导入）
+
+函数计算控制台支持 JSON 格式批量导入环境变量，直接复制以下内容粘贴即可：
+
+```json
+{
+  "GIN_MODE": "release",
+  "LD_LIBRARY_PATH": "/code:/code/lib:/usr/lib:/opt/lib:/usr/local/lib",
+  "PATH": "/opt/Go1/bin:/usr/local/bin/apache-maven/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ruby/bin:/opt/bin:/code:/code/bin",
+  "TZ": "Asia/Shanghai",
+  "ASTRA_APIKEY_APIHOST": "qu7qqnuwvp.re.qweatherapi.com",
+  "ASTRA_APIKEY_WEATHER": "your_weather_api_key",
+  "ASTRA_APIKEY_JWT_KID": "your_jwt_kid",
+  "ASTRA_APIKEY_JWT_PROJECT_ID": "your_jwt_project_id",
+  "ASTRA_APIKEY_JWT_PRIVATE_KEY_PEM": "your_ed25519_private_key",
+  "ASTRA_SECRET_TOKEN": "your_secret_token",
+  "ASTRA_SERVER_HOST": "0.0.0.0",
+  "ASTRA_SERVER_PORT": "9000",
+  "ASTRA_SERVER_DOMAIN": "https://your-domain.com",
+  "ASTRA_DB_TYPE": "mysql",
+  "ASTRA_DB_HOST": "rm-xxx.mysql.rds.aliyuncs.com",
+  "ASTRA_DB_PORT": "3306",
+  "ASTRA_DB_USER": "admin",
+  "ASTRA_DB_PASS": "your_db_password",
+  "ASTRA_DB_NAME": "astraschedule",
+  "ASTRA_RUN_SERVERLESS": "true"
+}
+```
+
+> ⚠️ 注意：JSON 中所有值均为字符串类型。布尔值使用 `"true"` / `"false"`，数字使用 `"9000"` 等字符串形式。
