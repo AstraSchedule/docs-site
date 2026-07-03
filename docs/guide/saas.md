@@ -25,7 +25,7 @@
 
 ### 1. 确定一个域名
 
-![image-20260704030036050](C:/Users/daizi/AppData/Roaming/Typora/typora-user-images/image-20260704030036050.png)
+![image-20260704030036050](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260704030036050.png)
 
 跟随提示要求，确定一个子域名。等待 **数秒** 服务端检查域名是否可用，如果不可用则很大概率是已被占据，需要您重新起一个名字。固然，为了方便他人，方便自己，尽量选择比较难重名的缩写。为了保证数据安全与防止误操作，租户 **没有办法** 删除自己，只能从系统内部进行删除，如需删除租户，请您联系 kuohu@getastra.cn
 
