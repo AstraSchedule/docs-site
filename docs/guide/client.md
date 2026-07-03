@@ -97,7 +97,7 @@ Nanjing/Gulou
 
 4. 输入完成后点击确定。客户端会自动获取当地天气信息并显示在课表界面上。
 
-> 💡 天气功能需要后端配置有效的天气 API Key 才能正常使用。如果天气不显示，请参考 [获取和风天气 API 凭证](./lowcost/weather-api.md) 配置 API。 **SaaS 无需自行配置 API Key ** 。
+> 💡 天气功能需要后端配置有效的天气 API Key 才能正常使用。如果天气不显示，请参考 [获取和风天气 API 凭证](./lowcost/weather-api.md) 配置 API。 **SaaS 无需自行配置 API Key** 。
 
 ## 不同部署方案的服务端地址
 
