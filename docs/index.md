@@ -15,12 +15,12 @@ hero:
       text: 使用手册
       link: /manual/
     - theme: alt
-      text: GitHub
-      link: https://github.com/AstraSchedule/desktop
+      text: 下载链接
+      link: https://hubproxy.khbit.cn/https://github.com/daizihan233/AstraSchedule/releases/latest/download/AstraScheduleInstaller.exe
 
 features:
   - title: 灵活部署
-    details: SQLite 开箱即用，也支持 MySQL。能跑在云函数等 Serverless 平台上轮询，也能够跑在服务器上 WebSocket 实时推送。客户端、管理端、后端可以分开放在不同地方。
+    details: SQLite 开箱即用，也支持 MySQL。能跑在云函数等 Serverless 平台上轮询，也能跑在服务器上 WebSocket 实时推送。客户端、管理端、后端可以分开放在不同地方。支持 SaaS 多租户模式，通过边缘网关为多所学校提供独立服务。
     icon: 📦
   - title: 智能调休与自动任务
     details: 内置中国节假日调休推算，自动应用调课安排；临时调课设好日期范围，到期自动复原。一条规则搞定整个年级的临时调整，不用逐班修改。
@@ -44,6 +44,6 @@ features:
     details: 顶部滚动通知栏，考试期间放"诚信考试"，放假前放安全提示。天气预警来了自动替换普通通知。
     icon: 📢
   - title: 一键备份与迁移
-    details: 整个数据库一键导出为 JSON，换个服务器直接导入。支持 MySQL 和 SQLite 互相迁移，不怕换环境。
+    details: 数据库一键导出为 JSON，换个服务器直接导入。支持 MySQL 和 SQLite 互相迁移，不怕换环境。
     icon: 💾
 ---

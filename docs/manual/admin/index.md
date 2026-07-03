@@ -7,7 +7,9 @@
 
 ## 通用约定
 
-**身份认证**：所有涉及修改、新增、删除的操作均需通过 BasicAuth 密码验证。用户名为 `ElectronClassSchedule`，密码由服务端配置文件指定。密码错误将返回 `401` 提示"你寻思寻思这密码它对吗？"。
+**身份认证**：系统支持 JWT 登录和 BasicAuth 两种认证方式。所有涉及修改、新增、删除的操作均需通过密码验证。JWT 登录通过 `/web/auth/login` 获取 Token，BasicAuth 用户名兼容旧版 `ElectronClassSchedule`。密码错误将返回 `401` 提示。
+
+**写操作密码确认**：所有写操作（PUT/POST/DELETE）均需通过 `X-Verify-Password` 头传递密码进行二次确认。
 
 **提交前预览**：课表配置、科目管理、通用设置等页面在提交按钮下方均提供 JSON 预览卡片，便于在提交前检查即将发送的数据。
 
@@ -26,6 +28,8 @@
 | [倒数日](./countdown) | `/countdown` | 管理倒数日配置 |
 | [实用工具](./tools) | `/tools` | 配置迁移和数据备份 |
 | [调休导入](./compensation-import) | `/tools/compensation-import` | 批量导入调休数据 |
+| 用户管理 | `/users` | 管理员用户增删改查（admin 角色） |
+| 结构管理 | `/structure` | 学校/年级/班级结构管理 |
 
 ## 菜单导航
 

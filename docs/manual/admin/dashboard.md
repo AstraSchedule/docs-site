@@ -7,6 +7,10 @@
 
 仪表盘是进入管理后台后的默认首页，提供系统实时运行状态概览。页面每 1 秒自动轮询后端 `/web/statistic` 接口刷新数据。
 
+## Serverless 模式
+
+当后端运行在 Serverless 模式（`run.serverless = true`）时，仪表盘根据 `/web/statistic` 返回的 `serverless` 字段判断是否显示实时数据。Serverless 模式下不使用 WebSocket，客户端通过轮询获取配置，仪表盘相应调整显示内容。
+
 ## 今日统计
 
 顶部卡片展示三项核心指标：

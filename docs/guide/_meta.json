@@ -1,24 +1,27 @@
 [
   "index",
+  "saas",
+  "choose-deployment",
+  "client",
   {
-    "type": "dir-section-header",
+    "type": "dir",
     "name": "lowcost",
     "label": "极低成本外网部署",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   },
   {
-    "type": "dir-section-header",
+    "type": "dir",
     "name": "intranet",
     "label": "学校内网部署",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   },
   {
-    "type": "dir-section-header",
+    "type": "dir",
     "name": "production",
     "label": "外网高并发部署",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   }
 ]

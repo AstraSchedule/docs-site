@@ -57,6 +57,7 @@ ASTRA_SERVER_DOMAIN="https://example.com,http://localhost:5173"
 | `ASTRA_DB_PATH` | `db.path` | string | `./data/astra_schedule.db` |
 | `ASTRA_LOG_DEBUG` | `log.debug` | bool | `true` |
 | `ASTRA_RUN_SERVERLESS` | `run.serverless` | bool | `true` |
+| `ASTRA_INTERNAL_SECRET` | `internal.secret` | string | `your_internal_secret` |
 
 ## 配置文件详解
 
@@ -105,6 +106,10 @@ debug = false           # 调试模式（true 时日志级别为 Trace）
 
 [run]
 serverless = true       # Serverless 模式（true=禁用 WebSocket）
+
+[internal]
+# 内部服务认证（SaaS 模式，sys-backend 等调用时使用）
+secret = ""             # 内部服务间调用密钥，通过 X-Internal-Secret header 验证
 ```
 
 ## 各配置项说明
@@ -172,6 +177,14 @@ serverless = true       # Serverless 模式（true=禁用 WebSocket）
 | 字段 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
 | `serverless` | bool | 否 | `false` | Serverless 模式，开启后禁用 WebSocket |
+
+### `[internal]` — 内部服务认证（SaaS 模式）
+
+| 字段 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `secret` | string | 否 | — | 内部服务间调用的认证密钥，通过 `X-Internal-Secret` header 验证 |
+
+> 💡 此配置仅在 SaaS 多租户模式下使用，用于 sys-backend 等内部服务调用 AstraScheduleServerGo 时的身份验证。与 `secret.token` 独立，避免耦合。
 
 ## 部署示例
 

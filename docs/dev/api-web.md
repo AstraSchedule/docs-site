@@ -7,10 +7,41 @@
 
 ## 鉴权
 
-写操作通常使用 BasicAuth：
+系统支持两种鉴权方式：
 
-- username: `ElectronClassSchedule`
-- password: 服务端配置中的 token
+### 1. BasicAuth（兼容模式）
+
+写操作使用 BasicAuth：
+- username: `ElectronClassSchedule` 或 `AstraSchedule`
+- password: 服务端配置中的 `secret.token`
+
+### 2. JWT 认证（推荐）
+
+登录后获取 JWT Token，后续请求在 `Authorization: Bearer <token>` 头中传递。
+
+| 接口 | 方法 | 说明 |
+|------|------|------|
+| `/web/auth/login` | POST | 登录，返回 `{token, must_change_pwd, user: {id, username, role, scope}}` |
+| `/web/auth/me` | GET | 获取当前用户信息 |
+| `/web/auth/change-password` | POST | 修改密码 |
+
+### 写操作密码确认
+
+所有写操作（PUT/POST/DELETE）需通过 `X-Verify-Password` 头传递密码进行二次确认。
+
+### 角色与权限（RBAC）
+
+系统支持以下角色：
+
+| 角色 | 权限说明 |
+|------|----------|
+| `admin` | 全局管理员，可管理所有学校/年级/班级 |
+| `school_w` | 校级写入权限 |
+| `grade_w` | 年级级写入权限 |
+| `class_w` | 班级级写入权限 |
+| `readonly` | 只读权限 |
+
+角色通过 `scope` 字段限定作用范围（如 `学校/年级/班级`）。启动时自动创建默认管理员 `admin/admin`，首次登录需修改密码。
 
 ## 配置相关接口
 
@@ -40,6 +71,20 @@
 
 - `GET /web/config/:school/:grade/:class_number/settings`
 - `PUT /web/config/:school/:grade/:class_number/settings`
+
+## 用户管理接口
+
+- `GET /web/users` — 获取用户列表（admin 限定）
+- `POST /web/users` — 创建用户
+- `PUT /web/users/:id` — 更新用户
+- `DELETE /web/users/:id` — 删除用户
+
+## 结构管理接口
+
+- `GET /web/structure` — 获取学校/年级/班级树形结构，返回格式：
+  ```json
+  [{"text": "学校名", "children": [{"text": "年级", "children": [{"text": "班级"}]}]}]
+  ```
 
 ## 复制配置接口（新增）
 
@@ -71,19 +116,28 @@
 }
 ```
 
-## 系统备份 / 还原接口（新增）
+## 系统备份 / 还原接口
 
-- `GET /web/backup/export`
-- `POST /web/backup/import`
+- `GET /web/backup/export` — 导出完整备份
+- `POST /web/backup/import` — 导入备份
 
 说明：
 
-- 两个接口都需要 BasicAuth。
-- `export` 返回完整数据库备份 JSON 文件流。
+- 两个接口都需要 BasicAuth 或 JWT + 密码确认。
+- `export` 返回完整数据库备份 JSON 文件流，包含以下八张表的数据：
+  - `schedules` — 课表
+  - `client_configs` — 客户端配置
+  - `timetables` — 作息时间表
+  - `subjects` — 科目
+  - `data_versions` — 数据版本号
+  - `autorun_records` — 自动任务
+  - `countdown_records` — 倒数日
+  - `users` — 管理员用户
 - `import` 支持两种请求方式：
   - `multipart/form-data` 上传字段 `file`（推荐）
   - 直接提交 JSON 请求体
-- 导入策略为 upsert（覆盖更新），支持跨数据库类型迁移（如 MySQL → SQLite）。
+- 导入策略为 upsert（覆盖更新），支持跨数据库类型迁移（如 MySQL → SQLite）
+- SaaS 版本导入时，若备份数据不含 namespace，会自动从 JWT claims 填充
 
 ### 导出返回
 

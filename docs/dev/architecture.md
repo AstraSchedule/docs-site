@@ -5,22 +5,41 @@
 
 ## 组件划分
 
-- `AstraScheduleServerGo`：核心后端 API（Gin + GORM）
-- `NaiveClassSchedule`：Web 管理端（Vue + Naive UI）
-- `ElectronClassSchedule`：展示端客户端
-- `go-valence-cal`：调休计算能力
+- `AstraScheduleServerGo`：核心后端 API（Gin + GORM），支持 SQLite 和 MySQL
+- `NaiveClassSchedule`：Web 管理端（Vue3 + Naive UI + Vite），课表/调课/倒计时等配置管理
+- `ElectronClassSchedule`：展示端客户端（Electron + 原生 HTML/CSS/JS）
+- `dashboard`：数据库管理 Dashboard（Vue3 + Naive UI + Vite），面向运维人员的数据库操作界面
+- `sys-backend`：系统后端（Go + Gin），管理多租户/数据库级操作，供 dashboard 调用
+- `edge-gateway`：反向代理网关（Cloudflare Workers），路由 `*-do.getastra.cn` 子域名到对应租户后端
+- `go-valence-cal`：调休计算能力（Go 库，通过 Go Modules 引入）
+- `AstraScheduleDocs`：项目文档站（Rspress），即你正在阅读的文档
 
 ## 数据作用域模型
 
+数据按三级层次隔离：学校 → 年级 → 班级。
+
 ### 学校/年级级别
 
-- Subjects
-- Timetable
+- `subjects`：科目简称与全称映射
+- `timetables`：作息时间表
 
 ### 学校/年级/班级级别
 
-- Schedule
-- ClientConfig
+- `schedules`：课表数据
+- `client_configs`：客户端通用设置
+
+### 全局级别
+
+- `autorun_records`：自动任务记录
+- `countdown_records`：倒数日数据
+- `data_versions`：数据版本号
+- `users`：管理员用户（用户名、密码哈希、角色、作用域）
+
+## 多租户架构（SaaS 模式）
+
+SaaS 版本通过 namespace 实现多租户数据隔离。namespace 从请求的 Host 头解析，规则为反转域名段用 `/` 连接（如 `aaa-do.getastra.cn` → `cn/getastra/aaa-do`）。所有数据表包含 `namespace` 字段作为唯一索引最高优先级。edge-gateway 负责路由 `*-do.getastra.cn` 子域名到对应租户后端。
+
+> 注意：main 分支为基础版本，不含 namespace 多租户功能。SaaS 功能仅在 `saas/main` 分支。
 
 ## 关键链路
 
@@ -30,9 +49,9 @@
 
 ## 设计要点
 
-- 通过后端兼容 Python 历史接口格式，降低前端改造成本
+- 后端兼容 Python 历史接口格式，降低前端改造成本
 - 使用"常日"作为兜底作息，提升异常配置容错能力
-- 面向 Serverless 场景优化冷启动阶段行为
+- 针对 Serverless 场景优化冷启动行为
 
 ## 客户端存储
 

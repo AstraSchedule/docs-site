@@ -25,6 +25,11 @@
     "activeMatch": "/faq/"
   },
   {
+    "text": "术语表",
+    "link": "/glossary/",
+    "activeMatch": "/glossary/"
+  },
+  {
     "text": "致谢",
     "link": "/thanks",
     "activeMatch": "/thanks"
