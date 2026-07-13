@@ -10,7 +10,7 @@
 2. 如果请求后端 API 失败，检查：
    - 后端是否运行
    - `src/global.js` 中 `APISRV` 地址是否正确（必须与部署时配置一致）
-3. 如果是 Netlify 部署，确认构建成功且 `APISRV` 地址包含了协议（`https://`）
+3. 如果是 Cloudflare Pages 部署，确认构建成功且 `APISRV` 地址包含了协议（`https://`）
 4. 尝试清除浏览器缓存（Ctrl+Shift+Delete）
 
 ## 保存配置失败？

@@ -27,8 +27,8 @@ graph TB
         SQLite["💾 SQLite 数据库<br/>嵌入式存储"]
     end
     
-    subgraph "Netlify"
-        Admin["📱 管理后台<br/>NaiveClassSchedule"]
+    subgraph "Cloudflare Pages"
+        Admin["📱 管理后台<br/>AstraSchedule"]
     end
     
     Client -->|"HTTP/HTTPS"| WAF
@@ -46,7 +46,7 @@ graph TB
 |------|------|------|
 | 后端 | 阿里云函数计算 | Go 运行时 |
 | 数据库 | SQLite | 无需安装，数据存在云函数实例中 |
-| 管理端 | Netlify | 免费托管，自动从 GitHub 构建部署 |
+| 管理端 | Cloudflare Pages | 免费托管，自动从 GitHub 构建部署 |
 | 安全防护 | Cloudflare CDN | 免费 WAF + HTTPS + DDoS 防护 |
 
 ## 你需要准备
@@ -62,7 +62,7 @@ graph TB
 |------|------|
 | 域名 | ≈ 40 元/年 |
 | 函数计算 | ≈ 5 元/月 |
-| Netlify | 免费 |
+| Cloudflare Pages | 免费 |
 | Cloudflare CDN | 免费 |
 | **合计** | **≈ 85 元/年** |
 
@@ -71,7 +71,7 @@ graph TB
 1. [注册并配置 Cloudflare](./cloudflare.md) — DNS 解析 + WAF + HTTPS
 2. [部署后端到函数计算](./server-fc.md) — 上传代码，配置触发器
 3. [获取和风天气 API 凭证](./weather-api.md) — 配置天气功能
-4. [部署管理端到 Netlify](./web-netlify.md) — Fork 仓库 → 一键部署
+4. [部署管理端到 Cloudflare Pages](./web-cloudflare.md) — Fork 仓库 → 一键部署
 5. [安装客户端](./client.md) — 教室电脑安装配置
 
 > 💡 本方案使用阿里云函数计算，你也可以部署在腾讯云函数、AWS Lambda 等任何你熟悉的 Serverless 平台。

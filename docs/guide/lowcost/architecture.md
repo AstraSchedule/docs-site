@@ -25,8 +25,8 @@ graph TB
         SQLite["💾 SQLite 数据库<br/>嵌入式存储"]
     end
     
-    subgraph "Netlify"
-        Admin["📱 管理后台<br/>NaiveClassSchedule"]
+    subgraph "Cloudflare Pages"
+        Admin["📱 管理后台<br/>AstraSchedule"]
     end
     
     Client -->|"HTTP/HTTPS"| WAF
@@ -45,7 +45,7 @@ sequenceDiagram
     participant FC as 阿里云函数计算
     participant DB as SQLite
     participant B as 浏览器
-    participant NL as Netlify
+    participant NL as Cloudflare Pages
     
     Note over C,FC: 客户端获取课表
     C->>CF: GET /:school/:grade/:class
@@ -82,7 +82,7 @@ graph TB
     C --> D["4. 部署后端到函数计算"]
     D --> E["5. 配置触发器"]
     E --> F["6. Fork 管理端仓库"]
-    F --> G["7. 连接 Netlify"]
+    F --> G["7. 连接 Cloudflare Pages"]
     G --> H["8. 自动构建部署"]
     H --> I["9. 安装客户端"]
     I --> J["10. 配置云端地址"]
@@ -93,7 +93,7 @@ graph TB
 | 组件 | 技术栈 | 部署位置 | 费用 |
 |------|--------|----------|------|
 | **客户端** | Electron 22 + JS + jQuery | 教室电脑 | 免费 |
-| **管理后台** | Vue3 + Vite + Naive UI | Netlify | 免费 |
+| **管理后台** | Vue3 + Vite + Naive UI | Cloudflare Pages | 免费 |
 | **后端 API** | Go 1.26 + Gin + GORM | 阿里云函数计算 | ≈5元/月（假期不计费） |
 | **数据库** | SQLite | 嵌入云函数实例 | 免费 |
 | **安全防护** | Cloudflare CDN | 全球 CDN | 免费 |
@@ -118,7 +118,7 @@ graph TB
         Storage["NAS 存储"]
     end
     
-    subgraph "Netlify"
+    subgraph "Cloudflare Pages"
         CDN["全球 CDN"]
         Build["构建服务"]
     end

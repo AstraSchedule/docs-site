@@ -72,16 +72,16 @@ AstraSchedule 需要配置的内容：
 1. 在域名注册商处，将域名的 DNS 服务器修改为 Cloudflare 提供的地址
 2. 在 Cloudflare 控制台添加两条 CNAME 记录：
    - `api.你的域名.com` → 函数计算的 CNAME 地址
-   - `admin.你的域名.com` → Netlify 提供的域名地址
+   - `admin.你的域名.com` → Cloudflare Pages 提供的域名地址
 
 配置完成后等待 DNS 生效（通常几分钟到几小时不等）。
 
-## 部署到 Netlify 后，管理端修改后端地址需要重新部署吗？
+## 部署到 Cloudflare Pages 后，管理端修改后端地址需要重新部署吗？
 
 是的。`src/global.js` 中的 `APISRV` 是构建时确定的，修改后需要重新触发构建。
 
 触发重新构建的方法：
 
 1. 在 GitHub 上修改 `src/global.js` 并提交（Commit）
-2. Netlify 自动检测到仓库更新，自动重新构建和部署
-3. 或者登录 Netlify → 选择你的站点 → Deploys → Trigger deploy → Deploy site，手动触发
+2. Cloudflare Pages 自动检测到仓库更新，自动重新构建和部署
+3. 或者登录 Cloudflare Dashboard → Workers & Pages → 你的项目 → Deployments → Retry deployment，手动触发

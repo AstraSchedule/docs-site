@@ -7,14 +7,14 @@
 
 生产级方案的管理端部署有两个选择：
 
-1. **Netlify**：与极低成本方案相同，免费、简单，推荐首选
+1. **Cloudflare Pages**：与极低成本方案相同，免费、简单，推荐首选
 2. **ESA / CDN 静态托管**：通过阿里云 OSS + ESA 加速，享受更低的中国大陆访问延迟
 
-## 选项一：Netlify（推荐）
+## 选项一：Cloudflare Pages（推荐）
 
-Netlify 的部署步骤与极低成本方案完全一致。
+Cloudflare Pages 的部署步骤与极低成本方案完全一致。
 
-参见 [极低成本方案 - 部署管理端到 Netlify](../lowcost/web-netlify.md)。
+参见 [极低成本方案 - 部署管理端到 Cloudflare Pages](../lowcost/web-cloudflare.md)。
 
 **唯一区别**：在修改 `src/global.js` 时，`APISRV` 的值填写生产级后端地址，如 `https://api.your-domain.com`。
 
@@ -104,5 +104,5 @@ ossutil cp -r dist/ oss://astra-admin/ --update
 
 | 选项 | 费用 |
 |------|------|
-| Netlify | 免费 |
+| Cloudflare Pages | 免费 |
 | OSS + CDN | 按存储量和流量计费，小规模约 1-5 元/月 |

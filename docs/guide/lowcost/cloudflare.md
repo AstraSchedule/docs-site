@@ -103,7 +103,7 @@ SSL/TLS 加密模式说明：
 | Full | 全程加密，但不验证源站证书 | 可用 |
 | Full (strict) | 全程加密，且验证源站证书有效性 | **推荐** |
 
-Full (strict) 模式要求你的源站（函数计算和 Netlify）也配置了有效的 SSL 证书。阿里云函数计算和 Netlify 都默认提供 HTTPS，所以可以直接使用此模式。
+Full (strict) 模式要求你的源站（函数计算和 Cloudflare Pages）也配置了有效的 SSL 证书。阿里云函数计算和 Cloudflare Pages 都默认提供 HTTPS，所以可以直接使用此模式。
 
 3. 在 **Edge Certificates** 子页面中，确保以下选项已开启：
    - **Always Use HTTPS**：自动将 HTTP 请求重定向到 HTTPS

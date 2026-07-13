@@ -22,7 +22,7 @@
 |------|------|------|
 | 后端 | 阿里云函数计算 | Serverless 弹性伸缩，按量计费 |
 | 数据库 | 阿里云 MySQL Serverless | 弹性伸缩，自动备份，高可用 |
-| 管理端 | 静态托管 + CDN | 构建后部署到 CDN 或 Netlify |
+| 管理端 | 静态托管 + CDN | 构建后部署到 CDN 或 Cloudflare Pages |
 | 安全防护 | 阿里云 ESA | 全站加速 + WAF + DDoS 防护 + HTTPS |
 
 ## 对比极低成本方案
