@@ -23,7 +23,7 @@
 
 > [!TIP]
 >
-> 如果您的网络无法访问 GitHub，也可以尝试点击这个镜像地址进行下载：[hubproxy.khbit.cn](https://hubproxy.khbit.cn/https://github.com/daizihan233/AstraSchedule/releases/latest/download/AstraScheduleInstaller.exe)
+> 如果您的网络无法访问 GitHub，也可以尝试点击这个镜像地址进行下载：[hubproxy.khbit.cn](https://hubproxy.khbit.cn/https://github.com/AstraSchedule/desktop/releases/latest/download/AstraScheduleInstaller.exe)
 >
 > 客户端也使用此镜像源用于软件更新，它是安全的，由开发者自行维护。
 
