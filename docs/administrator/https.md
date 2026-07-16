@@ -1,15 +1,15 @@
-> [!DANGER]
-> 本页由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
+> [!WARNING]
+> 本页部分内容由 AI 生成，尚未经过人工审核，请谨慎参考。
 
 # HTTPS 配置
 
-HTTPS 加密传输是保护数据传输安全的基础措施。AstraSchedule 的配置数据（课表、作息、科目等）和认证凭据（BasicAuth 密码）在传输过程中必须加密，防止被中间人窃取或篡改。
+HTTPS 加密传输是保护数据传输安全的基础措施。AstraSchedule 的配置数据（课表、作息、科目等）和认证凭据在传输过程中必须加密，防止被中间人窃取或篡改。
 
 ## 为什么需要 HTTPS
 
 即便是在内网环境中，也建议启用 HTTPS。原因如下：
 
-1. **BasicAuth 认证明文传输**：AstraSchedule 管理端使用 HTTP Basic Authentication，密码以 Base64 编码传输。Base64 不是加密，HTTP 明文传输意味着密码可被网络中的任何节点截获。HTTPS 的 TLS 加密可以保护凭据安全。
+1. **认证凭据保护**：AstraSchedule 管理端使用 JWT + 密码确认机制。JWT Token 和密码凭据在 HTTP 明文传输中可被截获。HTTPS 的 TLS 加密可以保护凭据安全。
 2. **配置数据完整性**：课表和作息数据在传输过程中如果被篡改，会导致客户端显示错误信息。HTTPS 的 TLS 层提供完整性校验。
 3. **浏览器信任**：现代浏览器对 HTTP 页面标记为「不安全」，使用 HTTPS 可以避免浏览器警告。
 4. **API 兼容性**：部分 Serverless 平台（如阿里云函数计算）和 CDN 服务需要 HTTPS 才能正常工作。

@@ -1,5 +1,5 @@
-> [!DANGER]
-> 本页由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
+> [!WARNING]
+> 本页部分内容由 AI 生成，尚未经过人工审核，请谨慎参考。
 
 # 自动更新
 
@@ -28,7 +28,7 @@
 
 ## 更新源配置
 
-默认更新源：`https://github.com/AstraSchedule/desktop/releases`
+默认更新源：`https://github.com/daizihan233/AstraSchedule/releases`
 
 镜像代理：`https://hubproxy.khbit.cn`
 

@@ -19,5 +19,5 @@ RESTful API 特点：
 在 AstraSchedule 中：
 - 管理端接口：`/web/*`
 - 客户端接口：`/:school/:grade/:class`
-- 认证方式：BasicAuth 或 JWT
+- 认证方式：JWT + 密码确认
 - 响应格式：JSON

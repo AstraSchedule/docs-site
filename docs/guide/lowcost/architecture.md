@@ -148,7 +148,7 @@ graph TB
     end
     
     subgraph "后端安全"
-        Auth["BasicAuth 认证"]
+        Auth["JWT 认证"]
         CORS["CORS 配置"]
         Validate["输入验证"]
     end

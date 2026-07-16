@@ -1,5 +1,5 @@
-> [!DANGER]
-> 本页由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
+> [!WARNING]
+> 本页部分内容由 AI 生成，尚未经过人工审核，请谨慎参考。
 
 # 管理后台操作指南
 
@@ -7,7 +7,7 @@
 
 ## 通用约定
 
-**身份认证**：系统支持 JWT 登录和 BasicAuth 两种认证方式。所有涉及修改、新增、删除的操作均需通过密码验证。JWT 登录通过 `/web/auth/login` 获取 Token，BasicAuth 用户名兼容旧版 `ElectronClassSchedule`。密码错误将返回 `401` 提示。
+**身份认证**：系统使用 JWT 登录认证。所有涉及修改、新增、删除的操作均需通过密码验证。JWT 登录通过 `/web/auth/login` 获取 Token。密码错误将返回 `401` 提示。
 
 **写操作密码确认**：所有写操作（PUT/POST/DELETE）均需通过 `X-Verify-Password` 头传递密码进行二次确认。
 

@@ -25,7 +25,7 @@
 1. 打开浏览器开发者工具（F12）→ Network 标签页，刷新页面
 2. 查看是否有请求失败（红色），通常是对后端 API 的请求
 3. API 请求失败说明后端未运行或 `global.js` 中 `APISRV` 地址配错
-4. API 请求返回 403 说明 BasicAuth 密码错误（检查服务器 `config.toml` 中的 `token`）
+4. API 请求返回 403 说明认证失败（检查登录 Token 是否有效，或密码确认是否正确）
 5. 请求状态为 `(failed)` 或 `net::ERR_CONNECTION_REFUSED` 的话，检查后端是否启动
 
 ## 外网部署后 API 返回大量 403 错误？
