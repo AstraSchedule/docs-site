@@ -1,12 +1,12 @@
-> [!DANGER]
-> 本页由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
+> [!WARNING]
+> 本页部分内容由 AI 生成，尚未经过人工审核，请谨慎参考。
 
 # 系统架构
 
 ## 组件划分
 
 - `AstraScheduleServerGo`：核心后端 API（Gin + GORM），支持 SQLite 和 MySQL
-- `NaiveClassSchedule`：Web 管理端（Vue3 + Naive UI + Vite），课表/调课/倒计时等配置管理
+- `usr-dashboard`：Web 管理端（Vue3 + Naive UI + Vite），课表/调课/倒计时等配置管理
 - `ElectronClassSchedule`：展示端客户端（Electron + 原生 HTML/CSS/JS）
 - `dashboard`：数据库管理 Dashboard（Vue3 + Naive UI + Vite），面向运维人员的数据库操作界面
 - `sys-backend`：系统后端（Go + Gin），管理多租户/数据库级操作，供 dashboard 调用
@@ -28,10 +28,10 @@
 - `schedules`：课表数据
 - `client_configs`：客户端通用设置
 
-### 全局级别
+### 班级级别
 
-- `autorun_records`：自动任务记录
-- `countdown_records`：倒数日数据
+- `autorun_records`：自动任务记录（通过 `scope` 字段限定生效班级）
+- `countdown_records`：倒数日数据（通过 `scope` 字段限定生效班级）
 - `data_versions`：数据版本号
 - `users`：管理员用户（用户名、密码哈希、角色、作用域）
 

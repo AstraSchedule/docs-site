@@ -1,5 +1,5 @@
-> [!DANGER]
-> 本页由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
+> [!WARNING]
+> 本页部分内容由 AI 生成，尚未经过人工审核，请谨慎参考。
 
 # Web 管理端 API
 
@@ -7,17 +7,7 @@
 
 ## 鉴权
 
-系统支持两种鉴权方式：
-
-### 1. BasicAuth（兼容模式）
-
-写操作使用 BasicAuth：
-- username: `ElectronClassSchedule` 或 `AstraSchedule`
-- password: 服务端配置中的 `secret.token`
-
-### 2. JWT 认证（推荐）
-
-登录后获取 JWT Token，后续请求在 `Authorization: Bearer <token>` 头中传递。
+系统使用 JWT 认证，登录后获取 Token，后续请求在 `Authorization: Bearer <token>` 头中传递。
 
 | 接口 | 方法 | 说明 |
 |------|------|------|
@@ -30,8 +20,6 @@
 所有写操作（PUT/POST/DELETE）需通过 `X-Verify-Password` 头传递密码进行二次确认。
 
 ### 角色与权限（RBAC）
-
-系统支持以下角色：
 
 | 角色 | 权限说明 |
 |------|----------|
@@ -86,7 +74,7 @@
   [{"text": "学校名", "children": [{"text": "年级", "children": [{"text": "班级"}]}]}]
   ```
 
-## 复制配置接口（新增）
+## 复制配置接口
 
 - `POST /web/config/copy`
 
@@ -123,7 +111,7 @@
 
 说明：
 
-- 两个接口都需要 BasicAuth 或 JWT + 密码确认。
+- 两个接口都需要 JWT 认证 + 密码确认。
 - `export` 返回完整数据库备份 JSON 文件流，包含以下八张表的数据：
   - `schedules` — 课表
   - `client_configs` — 客户端配置

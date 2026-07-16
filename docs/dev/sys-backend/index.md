@@ -1,27 +1,24 @@
-> [!DANGER]
-> 本页由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
+> [!WARNING]
+> 本页部分内容由 AI 生成，尚未经过人工审核，请谨慎参考。
 
-# Sys-Backend 系统后端
+# Sys Backend 系统后端
 
-Sys-Backend 是 AstraSchedule SaaS 版本的系统管理后端，提供认证、租户管理、数据管理等功能。该后端供 Dashboard 调用，负责系统级操作。
+SaaS 版本的系统管理后端，供 Dashboard 调用，负责认证、租户管理、数据管理等系统级操作。
 
 ## 技术栈
 
-- Go 1.26+
-- Gin（HTTP 框架）
-- GORM（ORM）
-- JWT（认证）
+- Go 1.26+ + Gin + GORM + JWT
 
 ## 项目结构
 
 ```
 sys-backend/
-├── main.go              # 入口文件
+├── main.go              # 入口
 ├── config/              # 配置加载
-├── db/                  # 数据库连接与操作
-├── middleware/           # 中间件（JWT 认证、权限验证）
+├── db/                  # 数据库操作
+├── middleware/           # JWT 认证、权限验证
 ├── model/               # 数据模型
-├── router/              # 路由定义
+├── router/
 │   ├── web/             # Web API 处理器
 │   └── client/          # 客户端 API（预留）
 ├── service/             # 业务逻辑
@@ -30,14 +27,14 @@ sys-backend/
 
 ## API 概览
 
-所有接口前缀为 `/web`，使用 JWT 认证。
+所有接口前缀 `/web`，JWT 认证。
 
-### 认证接口
+### 认证
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
-| POST | `/web/auth/login` | 用户登录，获取 JWT Token |
-| GET | `/web/auth/me` | 获取当前用户信息 |
+| POST | `/web/auth/login` | 登录，获取 JWT Token |
+| GET | `/web/auth/me` | 当前用户信息 |
 | POST | `/web/auth/change-password` | 修改密码 |
 | POST | `/web/auth/verify-password` | 验证密码（写操作二次确认） |
 
@@ -46,9 +43,9 @@ sys-backend/
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | GET | `/web/system-users` | 列出所有系统用户 |
-| POST | `/web/system-users` | 创建系统用户 |
-| PUT | `/web/system-users/:id` | 更新系统用户 |
-| DELETE | `/web/system-users/:id` | 删除系统用户 |
+| POST | `/web/system-users` | 创建 |
+| PUT | `/web/system-users/:id` | 更新 |
+| DELETE | `/web/system-users/:id` | 删除 |
 
 ### 租户管理
 
@@ -67,9 +64,9 @@ sys-backend/
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | GET | `/web/astra-users` | 列出所有租户用户 |
-| POST | `/web/astra-users` | 创建租户用户 |
-| PUT | `/web/astra-users/:id` | 更新租户用户 |
-| DELETE | `/web/astra-users/:id` | 删除租户用户 |
+| POST | `/web/astra-users` | 创建 |
+| PUT | `/web/astra-users/:id` | 更新 |
+| DELETE | `/web/astra-users/:id` | 删除 |
 
 ### 数据管理
 
@@ -92,21 +89,7 @@ sys-backend/
 | DELETE | `/web/database/drop/:table` | 删除单表 |
 | POST | `/web/database/repair` | 修复数据库 |
 
-## 认证机制
-
-### JWT 认证
-
-1. 调用 `POST /web/auth/login` 获取 JWT Token
-2. 后续请求在 `Authorization` 头中携带 `Bearer <token>`
-3. Token 有过期时间，过期后需重新登录
-
-### 写操作二次确认
-
-所有写操作（POST/PUT/DELETE）需要在 `X-Verify-Password` 头中提供密码进行二次确认。
-
 ## 配置
-
-配置文件支持 TOML、YAML、JSON、dotenv 格式，环境变量前缀为 `SYS_`。
 
 ```toml
 [server]
@@ -118,19 +101,17 @@ domain = ["https://dashboard.example.com"]
 type = "sqlite"
 path = "./data/sys.db"
 
+[sysdb]
+type = "sqlite"
+path = "./data/sys_backend.db"
+
 [secret]
 token = "your_secret"
-
-[log]
-debug = false
 ```
 
 ## 启动
 
 ```bash
-# 构建
 go build -o sys-backend
-
-# 运行
 ./sys-backend
 ```

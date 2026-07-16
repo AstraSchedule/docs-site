@@ -1,1 +1,60 @@
-["index", "architecture", "api-web", "backend-go", "sys-backend", "dashboard", "edge-gateway", "go-valence-cal", "docs-contrib"]
+[
+  "index",
+  "architecture",
+  {
+    "type": "dir",
+    "name": "desktop",
+    "label": "Desktop 客户端",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "usr-backend",
+    "label": "User Backend",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "usr-dashboard",
+    "label": "User Dashboard",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "sys-backend",
+    "label": "Sys Backend",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "sys-dashboard",
+    "label": "Sys Dashboard",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "go-valence-cal",
+    "label": "Go-Valence-Cal",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "edge-gateway",
+    "label": "Edge Gateway",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "docs-site",
+    "label": "文档站",
+    "collapsible": true,
+    "collapsed": true
+  }
+]
