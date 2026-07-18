@@ -8,7 +8,7 @@
 ```mermaid
 graph TB
     subgraph "教室环境"
-        Client["🖥️ Electron 客户端<br/>ElectronClassSchedule"]
+        Client["🖥️ Electron 客户端<br/>desktop"]
     end
     
     subgraph "用户环境"
@@ -21,12 +21,12 @@ graph TB
     end
     
     subgraph "阿里云函数计算"
-        Backend["⚙️ Go 后端 API<br/>AstraScheduleServerGo"]
+        Backend["⚙️ Go 后端 API<br/>usr-backend"]
         SQLite["💾 SQLite 数据库<br/>嵌入式存储"]
     end
     
     subgraph "Cloudflare Pages"
-        Admin["📱 管理后台<br/>AstraSchedule"]
+        Admin["📱 管理后台<br/>usr-dashboard"]
     end
     
     Client -->|"HTTP/HTTPS"| WAF

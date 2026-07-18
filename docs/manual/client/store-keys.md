@@ -25,6 +25,6 @@
 
 ## 注意事项
 
-- 配置文件保存在 `%APPDATA%/electron-class-schedule/config.json`
+- 配置文件保存在 `%APPDATA%/electron_class_schedule/config.json`
 - 卸载程序时可选择是否保留配置
 - 如需重置所有设置，可手动删除配置文件后重启客户端

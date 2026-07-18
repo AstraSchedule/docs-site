@@ -46,7 +46,7 @@ bun run preview  # 预览构建结果
 ## API 调用
 
 - 使用 `vue-request` 管理请求状态
-- 认证方式：BasicAuth（用户名 `AstraSchedule`，密码由用户在界面输入）
+- 认证方式：JWT（登录后 `Authorization: Bearer <token>`）；写操作通过 `X-Verify-Password` 二次确认用户密码
 - 首页通过 1 秒轮询显示 WebSocket 连接状态和客户端统计
 
 ## 路由

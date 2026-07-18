@@ -5,14 +5,14 @@
 
 ## 组件划分
 
-- `AstraScheduleServerGo`：核心后端 API（Gin + GORM），支持 SQLite 和 MySQL
+- `usr-backend`：核心后端 API（Gin + GORM），支持 SQLite 和 MySQL
 - `usr-dashboard`：Web 管理端（Vue3 + Naive UI + Vite），课表/调课/倒计时等配置管理
-- `ElectronClassSchedule`：展示端客户端（Electron + 原生 HTML/CSS/JS）
-- `dashboard`：数据库管理 Dashboard（Vue3 + Naive UI + Vite），面向运维人员的数据库操作界面
-- `sys-backend`：系统后端（Go + Gin），管理多租户/数据库级操作，供 dashboard 调用
-- `edge-gateway`：反向代理网关（Cloudflare Workers），路由 `*-do.getastra.cn` 子域名到对应租户后端
+- `desktop`：展示端客户端（Electron + 原生 HTML/CSS/JS）
+- `sys-dashboard`：系统端 Dashboard（Vue3 + Naive UI + Vite），面向运维的多租户/数据管理界面
+- `sys-backend`：系统后端（Go + Gin），管理多租户/数据库级操作，供 sys-dashboard 调用
+- `reg-go` / `reg-to`：SaaS 注册中心后端与前端（租户注册、子域名分配）
 - `go-valence-cal`：调休计算能力（Go 库，通过 Go Modules 引入）
-- `AstraScheduleDocs`：项目文档站（Rspress），即你正在阅读的文档
+- `docs-site`：项目文档站（Rspress），即你正在阅读的文档
 
 ## 数据作用域模型
 
@@ -37,9 +37,9 @@
 
 ## 多租户架构（SaaS 模式）
 
-SaaS 版本通过 namespace 实现多租户数据隔离。namespace 从请求的 Host 头解析，规则为反转域名段用 `/` 连接（如 `aaa-do.getastra.cn` → `cn/getastra/aaa-do`）。所有数据表包含 `namespace` 字段作为唯一索引最高优先级。edge-gateway 负责路由 `*-do.getastra.cn` 子域名到对应租户后端。
+SaaS 版本通过 namespace 实现多租户数据隔离。namespace 从请求的 Host 头解析，规则为反转域名段用 `/` 连接（如 `aaa-do.getastra.cn` → `cn/getastra/aaa-do`）。所有数据表包含 `namespace` 字段作为唯一索引最高优先级。SaaS 对外子域名与注册流程由 `reg-go` / `reg-to` 与线上网关共同完成。
 
-> 注意：main 分支为基础版本，不含 namespace 多租户功能。SaaS 功能仅在 `saas/main` 分支。
+> 注意：main 分支为基础版本，不含 namespace 多租户功能。SaaS 功能仅在 `saas/main` 分支（`sys-backend` / `sys-dashboard` 的 main 已含多租户能力）。
 
 ## 关键链路
 
@@ -57,7 +57,7 @@ SaaS 版本通过 namespace 实现多租户数据隔离。namespace 从请求的
 
 ### electron-store
 
-用户偏好设置通过 electron-store 持久化保存在 `%APPDATA%/electron-class-schedule/config.json`，重装或更新后保持不变。
+用户偏好设置通过 electron-store 持久化保存在 `%APPDATA%/electron_class_schedule/config.json`，重装或更新后保持不变。
 
 ### localStorage
 

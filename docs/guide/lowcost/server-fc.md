@@ -12,7 +12,7 @@
 ## 你需要准备
 
 - 阿里云账号（已实名认证）
-- 从 [GitHub Release](https://github.com/AstraSchedule/backend/releases/latest) 下载对应 Linux 版本的二进制文件（`AstraScheduleServerGo-linux-amd64`）
+- 从 [GitHub Release](https://github.com/AstraSchedule/backend/releases/latest) 下载 usr-backend 对应 Linux 二进制（资源名：`AstraScheduleServerGo-linux-amd64`）
 
 ## 步骤
 

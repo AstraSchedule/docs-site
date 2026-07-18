@@ -19,6 +19,5 @@
   "sys-backend",
   "sys-dashboard",
   "go-valence-cal",
-  "edge-gateway",
   "docs-contrib"
 ]

@@ -42,14 +42,14 @@ usr-backend/
 
 - 管理端前缀：`/web/*`
 - 客户端：无前缀
-- 认证：BasicAuth（用户名 `AstraSchedule` 或 `ElectronClassSchedule`）
+- 认证：JWT（`Authorization: Bearer <token>`），写操作需密码二次确认
 - 响应格式：`status`/`message`/`data` 或 `error`/`detail`
 - 参数校验错误 → `400`，资源缺失 → `404`，内部异常 → `500`
 
 ## 认证与鉴权
 
-- **JWT**：HS256，密钥复用 `secret.token`，过期 24 小时
-- **写操作密码确认**：`X-Verify-Password` 头
+- **JWT**：HS256，签名密钥为 `secret.token`，过期 24 小时；登录接口 `/web/auth/login`
+- **写操作密码确认**：`X-Verify-Password` 头（或请求体 `password`），校验的是**用户密码**，不是 `secret.token`
 - **内部服务认证**：`X-Internal-Secret` 头（sys-backend 等调用）
 
 ## 数据写入策略

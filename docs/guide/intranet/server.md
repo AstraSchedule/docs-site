@@ -17,8 +17,8 @@
 
 ### 1. 下载后端二进制文件
 
-1. 打开 [AstraScheduleServerGo Releases 页面](https://github.com/AstraSchedule/backend/releases/latest)
-2. 找到最新的发布版本，下载对应架构的二进制文件：
+1. 打开 [usr-backend Releases 页面](https://github.com/AstraSchedule/backend/releases/latest)
+2. 找到最新的发布版本，下载对应架构的二进制文件（Release 资源名仍为历史命名）：
    - AMD64（绝大多数服务器）：`AstraScheduleServerGo-linux-amd64`
    - ARM64（树莓派等）：`AstraScheduleServerGo-linux-arm64`
 3. 将文件上传到服务器，或直接在服务器上通过 `wget` 下载：
@@ -88,7 +88,7 @@ serverless = false
 |--------|------|
 | `apikey.apihost` | 天气 API 的请求域名，从天气数据服务商处获取 |
 | `apikey.weather` | 天气 API 密钥 |
-| `secret.token` | 管理端登录密码，务必修改为复杂字符串 |
+| `secret.token` | JWT 签名密钥，务必改成复杂字符串（不是登录密码） |
 | `server.host` | 监听地址，`0.0.0.0` 表示监听所有网络接口 |
 | `server.port` | 监听端口，默认 `9000` |
 | `server.domain` | 允许的 CORS 来源，填入管理端的访问地址。内网部署填客户端的局域网访问地址（如 `http://192.168.1.100`） |

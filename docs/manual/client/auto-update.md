@@ -28,7 +28,7 @@
 
 ## 更新源配置
 
-默认更新源：`https://github.com/daizihan233/AstraSchedule/releases`
+默认更新源：`https://github.com/AstraSchedule/desktop/releases`
 
 镜像代理：`https://hubproxy.khbit.cn`
 

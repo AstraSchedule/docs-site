@@ -23,7 +23,7 @@
 - 阿里云账号（已实名认证）
 - 已创建 MySQL Serverless 实例（参见 [配置 MySQL Serverless 数据库](./mysql.md)）
 - 已开通函数计算服务
-- 从 [GitHub Release](https://github.com/AstraSchedule/backend/releases/latest) 下载对应 Linux 版本的二进制文件（`AstraScheduleServerGo-linux-amd64`）
+- 从 [GitHub Release](https://github.com/AstraSchedule/backend/releases/latest) 下载 usr-backend 对应 Linux 二进制（资源名：`AstraScheduleServerGo-linux-amd64`）
 
 ## 步骤
 

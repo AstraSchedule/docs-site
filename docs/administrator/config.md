@@ -3,7 +3,7 @@
 
 # 服务端配置
 
-本页详细说明 AstraScheduleServerGo 后端的所有配置项、配置文件格式、环境变量覆盖方式及优先级规则。
+本页详细说明 `usr-backend` 后端的所有配置项、配置文件格式、环境变量覆盖方式及优先级规则。
 
 ## 配置文件格式
 
@@ -78,7 +78,7 @@ expires = 900           # JWT 有效期（秒），范围 1~86400
 
 [secret]
 # 服务认证密钥
-token = "YOUR_SECRET"   # 用于 Basic Auth 和 JWT 签名
+token = "YOUR_SECRET"   # JWT 签名密钥（不是管理员登录密码）
 
 [server]
 host = "0.0.0.0"        # 监听地址
@@ -136,11 +136,10 @@ secret = ""             # 内部服务间调用密钥，通过 X-Internal-Secret
 
 | 字段 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
-| `token` | string | 是 | — | 用于 Basic Auth 和 JWT 签名的密钥 |
+| `token` | string | 是 | — | JWT 签名密钥（HS256） |
 
-> ⚠️ 此密钥同时用于：
-> 1. 客户端/管理端的 Basic Auth 认证
-> 2. JWT 令牌的签名密钥
+> ⚠️ 此密钥用于签发与校验管理端 JWT，**不是**登录用户名/密码。
+> 管理员账号密码存在数据库 `users` 表（默认 `admin`/`admin`，首次登录需改密）。
 >
 > 请妥善保管，**不要提交到公开仓库**。
 
@@ -184,7 +183,7 @@ secret = ""             # 内部服务间调用密钥，通过 X-Internal-Secret
 |------|------|------|--------|------|
 | `secret` | string | 否 | — | 内部服务间调用的认证密钥，通过 `X-Internal-Secret` header 验证 |
 
-> 💡 此配置仅在 SaaS 多租户模式下使用，用于 sys-backend 等内部服务调用 AstraScheduleServerGo 时的身份验证。与 `secret.token` 独立，避免耦合。
+> 💡 此配置仅在 SaaS 多租户模式下使用，用于 sys-backend 等内部服务调用 usr-backend 时的身份验证。与 `secret.token` 独立，避免耦合。
 
 ## 部署示例
 

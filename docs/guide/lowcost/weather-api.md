@@ -56,7 +56,7 @@ abc1234xyz.def.qweatherapi.com
 apihost = "abc1234xyz.def.qweatherapi.com"  # 替换为你的 APIHost
 ```
 
-### 4. 获取 APIKey（简单方式）
+### 4. 获取 APIKey（简单方式，不建议）
 
 1. 在项目详情页面，点击「添加凭据」
 2. 身份认证方式选择 **API KEY**
@@ -73,7 +73,7 @@ weather = "ABCD1234EFGH"  # 替换为你的 APIKey
 
 > 💡 APIKey 方式简单，但安全性较低，2027 年起将受限，适合快速测试。
 
-### 5. 获取 JWT Token（推荐方式）
+### 5. 获取 JWT Token（建议方式）
 
 JWT Token 方式更安全，适合生产环境使用。
 
