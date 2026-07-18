@@ -1,1 +1,66 @@
-["index", "tray-menu", "cloud-update", "schedule-view", "debug", "display-switches", "window-mode", "keyboard-mouse", "store-keys", "auto-update"]
+[
+  "index",
+  {
+    "type": "section-header",
+    "label": "日常操作"
+  },
+  {
+    "type": "file",
+    "name": "tray-menu",
+    "label": "托盘菜单"
+  },
+  {
+    "type": "file",
+    "name": "cloud-update",
+    "label": "云端连接与更新"
+  },
+  {
+    "type": "file",
+    "name": "schedule-view",
+    "label": "课表与视图"
+  },
+  {
+    "type": "file",
+    "name": "display-switches",
+    "label": "显示开关"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "section-header",
+    "label": "窗口与交互"
+  },
+  {
+    "type": "file",
+    "name": "window-mode",
+    "label": "窗口模式"
+  },
+  {
+    "type": "file",
+    "name": "keyboard-mouse",
+    "label": "键盘与鼠标"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "section-header",
+    "label": "配置与更新"
+  },
+  {
+    "type": "file",
+    "name": "store-keys",
+    "label": "配置持久化"
+  },
+  {
+    "type": "file",
+    "name": "auto-update",
+    "label": "自动更新"
+  },
+  {
+    "type": "file",
+    "name": "debug",
+    "label": "调试选项"
+  }
+]

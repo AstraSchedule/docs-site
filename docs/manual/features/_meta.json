@@ -1,0 +1,32 @@
+[
+  {
+    "type": "file",
+    "name": "schedule",
+    "label": "课表"
+  },
+  {
+    "type": "file",
+    "name": "countdown",
+    "label": "倒计时与倒数日"
+  },
+  {
+    "type": "file",
+    "name": "weather",
+    "label": "天气"
+  },
+  {
+    "type": "file",
+    "name": "banner",
+    "label": "横幅通知"
+  },
+  {
+    "type": "file",
+    "name": "autorun",
+    "label": "自动任务与调休"
+  },
+  {
+    "type": "file",
+    "name": "backup",
+    "label": "备份与复制"
+  }
+]

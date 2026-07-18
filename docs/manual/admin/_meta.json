@@ -1,1 +1,69 @@
-["index", "dashboard", "schedule-config", "settings-config", "subject-config", "timetable-config", "autorun", "countdown", "tools", "compensation-import"]
+[
+  "index",
+  {
+    "type": "file",
+    "name": "dashboard",
+    "label": "仪表盘"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "section-header",
+    "label": "课表配置"
+  },
+  {
+    "type": "file",
+    "name": "subject-config",
+    "label": "科目管理"
+  },
+  {
+    "type": "file",
+    "name": "timetable-config",
+    "label": "作息表"
+  },
+  {
+    "type": "file",
+    "name": "schedule-config",
+    "label": "课表"
+  },
+  {
+    "type": "file",
+    "name": "settings-config",
+    "label": "通用设置"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "section-header",
+    "label": "任务与日程"
+  },
+  {
+    "type": "file",
+    "name": "autorun",
+    "label": "自动任务"
+  },
+  {
+    "type": "file",
+    "name": "countdown",
+    "label": "倒数日"
+  },
+  {
+    "type": "file",
+    "name": "compensation-import",
+    "label": "调休导入"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "type": "section-header",
+    "label": "数据工具"
+  },
+  {
+    "type": "file",
+    "name": "tools",
+    "label": "实用工具"
+  }
+]

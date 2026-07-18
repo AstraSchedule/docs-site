@@ -1,11 +1,12 @@
 [
   "index",
-  "schedule",
-  "countdown",
-  "weather",
-  "banner",
-  "autorun",
-  "backup",
+  {
+    "type": "dir-section-header",
+    "name": "features",
+    "label": "功能说明",
+    "collapsible": true,
+    "collapsed": false
+  },
   {
     "type": "dir-section-header",
     "name": "client",
@@ -16,7 +17,7 @@
   {
     "type": "dir-section-header",
     "name": "admin",
-    "label": "管理后台操作指南",
+    "label": "管理后台",
     "collapsible": true,
     "collapsed": false
   }
