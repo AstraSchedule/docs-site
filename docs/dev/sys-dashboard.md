@@ -1,6 +1,6 @@
-> [!DANGER] 
+> [!DANGER]
 >
-> 本文档由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：[kuohu@getastra.cn](mailto:kuohu@getastra.cn)
+> 本页由 AI 工具参考代码编写，尚未经过人工审核，内容仅供参考。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
 
 # Sys Dashboard 系统管理面板
 
