@@ -1,9 +1,4 @@
 [
-  "index",
-  {
-    "type": "section-header",
-    "label": "日常操作"
-  },
   {
     "type": "file",
     "name": "tray-menu",
@@ -25,13 +20,6 @@
     "label": "显示开关"
   },
   {
-    "type": "divider"
-  },
-  {
-    "type": "section-header",
-    "label": "窗口与交互"
-  },
-  {
     "type": "file",
     "name": "window-mode",
     "label": "窗口模式"
@@ -40,13 +28,6 @@
     "type": "file",
     "name": "keyboard-mouse",
     "label": "键盘与鼠标"
-  },
-  {
-    "type": "divider"
-  },
-  {
-    "type": "section-header",
-    "label": "配置与更新"
   },
   {
     "type": "file",

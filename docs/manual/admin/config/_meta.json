@@ -1,0 +1,22 @@
+[
+  {
+    "type": "file",
+    "name": "subject-config",
+    "label": "科目管理"
+  },
+  {
+    "type": "file",
+    "name": "timetable-config",
+    "label": "作息表"
+  },
+  {
+    "type": "file",
+    "name": "schedule-config",
+    "label": "课表"
+  },
+  {
+    "type": "file",
+    "name": "settings-config",
+    "label": "通用设置"
+  }
+]

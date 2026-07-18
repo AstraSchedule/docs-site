@@ -1,0 +1,17 @@
+[
+  {
+    "type": "file",
+    "name": "autorun",
+    "label": "自动任务"
+  },
+  {
+    "type": "file",
+    "name": "countdown",
+    "label": "倒数日"
+  },
+  {
+    "type": "file",
+    "name": "compensation-import",
+    "label": "调休导入"
+  }
+]
