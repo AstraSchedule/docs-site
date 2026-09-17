@@ -1,19 +1,8 @@
-/* 页面底部预留 ICP 备案号的高度，避免遮住正文末尾 */
-body {
-  padding-bottom: 30px;
-}
-
 .astra-icp-filing {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 15;
-  padding: 4px 0;
+  padding: 16px 0;
   text-align: center;
   font-size: 12px;
-  line-height: 1.4;
-  background: var(--rp-c-bg);
+  line-height: 1.5;
   border-top: 1px solid var(--rp-c-divider-light);
 }
 
