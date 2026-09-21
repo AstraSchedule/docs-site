@@ -7,5 +7,6 @@
   "maintenance",
   "monitor",
   "https",
-  "waf-cdn"
+  "waf-cdn",
+  "reg-service"
 ]
