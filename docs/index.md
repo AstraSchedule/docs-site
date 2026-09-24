@@ -16,7 +16,7 @@ hero:
       link: /manual/
     - theme: alt
       text: 下载链接
-      link: https://hubproxy.khbit.cn/https://github.com/AstraSchedule/desktop/releases/latest/download/AstraScheduleInstaller.exe
+      link: https://alist.ymbit.cn/RainyunOSS/AstraSchedule
 
 features:
   - title: 灵活部署
