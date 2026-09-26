@@ -19,7 +19,7 @@ AstraSchedule 提供数据库备份和配置复制功能，可用于保存数据
 
 导出的 JSON 文件包含以上八张表的数据。在管理端的"实用工具"页面点击"导出备份"即可下载备份文件。
 
-![系统备份/还原位置示意图](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260719025829008.png)
+![系统备份/还原位置示意图](https://cn-nb1.rains3.com/kuohublog-images/2026/09/27b3b3bd8a1d25ce6cfa5eebf3fbb93c.png)
 
 ## 完整备份导入
 
@@ -47,7 +47,7 @@ AstraSchedule 提供数据库备份和配置复制功能，可用于保存数据
 
 ## 配置复制
 
-![配置复制位置示意图](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260719025801352.png)
+![配置复制位置示意图](https://cn-nb1.rains3.com/kuohublog-images/2026/09/37401ed73a87eae1797208208cbb9421.png)
 
 管理端的"实用工具"页面提供班级间配置复制功能。复制操作涵盖以下内容：
 

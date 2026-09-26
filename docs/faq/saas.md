@@ -18,14 +18,14 @@
 
 ## 网络有什么要求？
 
-简而言之：客户端和管理后台要能上网。学校网络如果有限制，放行 `*.getastra.cn` 和 `hubproxy.khbit.cn` 这两个域名即可。
+简而言之：客户端和管理后台要能上网。学校网络如果有限制，放行 `*.getastra.cn` 和 `ningbo.rainyun.oss.ymbit.cn`（自动更新镜像）这两个域名即可。
 
 如果您的学校需要更严格的网路控制，具体而言，您需要放行：
 
 | 域名                | 用途     | 备注                     |
 | ------------------- | -------- | ------------------------ |
 | `i.getastra.cn`     | 配置管理 |                          |
-| `hubproxy.khbit.cn` | 自动更新 |                          |
+| `ningbo.rainyun.oss.ymbit.cn` | 自动更新 | 旧客户端可能仍在用 `hubproxy.khbit.cn`（会自动重定向，建议一并放行） |
 | `YOURS.getastra.cn` | 配置获取 | `YOURS` 为您申请的子域名 |
 
 ## SaaS 模式需要自己维护服务器吗？

@@ -59,7 +59,7 @@ bun run build   # 产物在 dist/
 
 客户端通过 electron-updater 自动更新（见[自动更新](../manual/client/auto-update)）：
 
-- 默认从 `hubproxy.khbit.cn` 镜像源拉取更新
+- 默认从 `ningbo.rainyun.oss.ymbit.cn` 镜像目录拉取更新（旧版客户端会把此前保存的 hubproxy 源自动迁移过来）
 - 打包版本（安装版）启动后自动检查更新，也可在托盘「检查更新」手动触发
 - 若教室网络无法访问镜像源，可自建镜像或在[下载页](https://github.com/AstraSchedule/desktop/releases)手动下载安装包覆盖安装
 
