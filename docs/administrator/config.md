@@ -58,6 +58,7 @@ ASTRA_SERVER_DOMAIN="https://example.com,http://localhost:5173"
 | `ASTRA_DB_PATH` | `db.path` | string | `./data/astra_schedule.db` |
 | `ASTRA_LOG_DEBUG` | `log.debug` | bool | `true` |
 | `ASTRA_RUN_SERVERLESS` | `run.serverless` | bool | `true` |
+| `ASTRA_AUTORUN_AUTO_CLEAN` | `autorun.auto_clean` | bool | `false` |
 | `ASTRA_INTERNAL_SECRET` | `internal.secret` | string | `your_internal_secret` |
 
 ## 配置文件详解
@@ -107,6 +108,9 @@ debug = false           # 调试模式（true 时日志级别为 Trace）
 
 [run]
 serverless = true       # Serverless 模式（true=禁用 WebSocket）
+
+[autorun]
+auto_clean = false      # 自动清理已过期的自动任务（启动时与运行期间按 24 小时间隔顺带清理）
 
 [internal]
 # 内部服务认证（SaaS 模式，sys-backend 等调用时使用）
@@ -177,6 +181,16 @@ secret = ""             # 内部服务间调用密钥，通过 X-Internal-Secret
 | 字段 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
 | `serverless` | bool | 否 | 代码零值为 `false`，但**官方模板默认 `true`** | Serverless 模式，开启后禁用 WebSocket。从模板复制的配置以模板值为准 |
+
+### `[autorun]` — 自动任务维护
+
+| 字段 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `auto_clean` | bool | 否 | `false` | 自动清理「已过期」且未停用的自动任务 |
+
+> 💡 开启后，后端在启动时清理一次，并在运行期间按 24 小时间隔由任意请求顺带触发（后台执行，不阻塞请求）。不使用定时器，因此在 Serverless（无常驻进程）下同样生效。
+>
+> ⚠️ **被停用的任务永不清理**：列表里显示「已停用」的任务即便条目都已结束也会保留，避免误删用户「先留着」的配置。手动清理入口见[自动任务](../manual/admin/tasks/autorun)。
 
 ### `[internal]` — 内部服务认证（SaaS 模式）
 
