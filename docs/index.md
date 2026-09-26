@@ -6,7 +6,7 @@ hero:
   text: AstraSchedule
   tagline: 灵活部署 · 智能调休 · 集中管控 · 兼容 Windows 7
   image:
-    src: https://image-hk-1.oss-accelerate.aliyuncs.com/icon.png
+    src: https://static.ymbit.cn/AstraSchedule/logo.png
   actions:
     - theme: brand
       text: 开始部署
@@ -16,7 +16,7 @@ hero:
       link: /manual/
     - theme: alt
       text: 下载链接
-      link: https://alist.ymbit.cn/RainyunOSS/AstraSchedule
+      link: https://alist.ymbit.cn/RainyunOSS/AstraSchedule/latest
 
 features:
   - title: 灵活部署
