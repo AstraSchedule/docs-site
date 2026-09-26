@@ -14,7 +14,7 @@ electron-updater 是 electron-builder 生态的自动更新库，通过读取更
 
 ## 在 AstraSchedule 中
 
-- 默认更新源为 `hubproxy.khbit.cn` 镜像（指向 `daizihan233/AstraSchedule` 仓库 Releases），可在托盘「更新源（可选）」自定义
+- 默认更新源为对象存储镜像目录 `https://ningbo.rainyun.oss.ymbit.cn/AstraSchedule/latest/`（CI 随发布写入 `latest.yml` / `win10.yml`），可在托盘「更新源（可选）」自定义；启动时会把历史默认源（hubproxy、旧 OSS 目录）自动迁移到该默认源
 - 版本号使用 `YYYYMM.D.N` 格式，electron-updater 会将其视为 semver 处理
 - 仅打包安装版本生效，开发调试版本不检查更新
 - 启动 3 秒后自动检查；托盘「检查更新」可手动触发

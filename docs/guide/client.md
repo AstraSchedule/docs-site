@@ -23,17 +23,17 @@
 
 > [!TIP]
 >
-> 如果您的网络无法访问 GitHub，也可以尝试点击这个镜像地址进行下载：[hubproxy.khbit.cn](https://hubproxy.khbit.cn/https://github.com/AstraSchedule/desktop/releases/latest/download/AstraScheduleInstaller.exe)
+> 如果您的网络无法访问 GitHub，也可以从镜像目录下载：[镜像下载目录](https://alist.ymbit.cn/RainyunOSS/AstraSchedule/latest)
 >
-> 客户端也使用此镜像源用于软件更新，它是安全的，由开发者自行维护。
+> 客户端也使用这个镜像目录用于软件更新，它由开发者自行维护。旧的 `hubproxy.khbit.cn` 下载链接会自动重定向到该目录，无需手动更换。
 
-![GitHub Release 页截图](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260613001351709.png)
+![GitHub Release 页截图](https://cn-nb1.rains3.com/kuohublog-images/2026/09/b2c2fe5a175b54d9de7d9f4651675e28.png)
 
 ### 2. 配置云端服务地址
 
 客户端默认会显示来自 `class.getastra.cn` 的演示环境地址。
 
-![image-20260704033405462](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260704033405462.png)
+![image-20260704033405462](https://cn-nb1.rains3.com/kuohublog-images/2026/09/2b0dc95dee948a528f8a7bcc96472aa4.png)
 
 客户端安装完成后，需要配置后端服务器地址才能拉取课表数据。
 
@@ -63,7 +63,7 @@ api.your-domain.com/
 
 客户端默认会显示来自演示环境 `39/2023/1` 的数据。
 
-![image-20260704033746908](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260704033746908.png)
+![image-20260704033746908](https://cn-nb1.rains3.com/kuohublog-images/2026/09/6847fd9091ce63da2a0e42a7ce755422.png)
 
 同样的，您需要配置机器所在的班级，格式为
 

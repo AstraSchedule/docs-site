@@ -4,7 +4,7 @@
 
 [👉 现在就去选择部署方式！](/guide/choose-deployment)
 
-![演示](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260523191327588.png)
+![演示](https://cn-nb1.rains3.com/kuohublog-images/2026/09/d7eccf60121e0781cef6556a9046d9b5.png)
 
 AstraSchedule 是一套学校班级电子课表系统，包含多个独立组件：
 
