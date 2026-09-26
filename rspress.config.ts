@@ -7,8 +7,8 @@ import { pluginSitemap } from '@rspress/plugin-sitemap';
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'AstraSchedule',
-  icon: 'https://image-hk-1.oss-accelerate.aliyuncs.com/icon.png',
-  logo: 'https://image-hk-1.oss-accelerate.aliyuncs.com/icon.png',
+  icon: 'https://cn-nb1.rains3.com/kuohublog-images/2026/09/b179a9ca48077ef92e5aea63c3bfa080.png',
+  logo: 'https://cn-nb1.rains3.com/kuohublog-images/2026/09/b179a9ca48077ef92e5aea63c3bfa080.png',
   logoText: '星程课表 · AstraSchedule',
   themeConfig: {
     socialLinks: [

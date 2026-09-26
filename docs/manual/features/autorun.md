@@ -113,7 +113,7 @@
 
 ### 全年调休批量导入
 
-![调休导入位置示意图](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260719030202306.png)
+![调休导入位置示意图](https://cn-nb1.rains3.com/kuohublog-images/2026/09/afb476eb0f2caae995c29608f12479b8.png)
 
 管理端提供全年调休批量导入功能。操作方法：
 

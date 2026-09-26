@@ -29,12 +29,15 @@
 
 ## 更新源配置
 
-默认更新源（GitHub Releases 镜像代理，由开发者自行维护）：
+默认更新源（对象存储镜像目录，由开发者自行维护，CI 随发布写入）：
 
 ```
-https://hubproxy.khbit.cn/https://github.com/AstraSchedule/desktop/releases/latest/download
+https://ningbo.rainyun.oss.ymbit.cn/AstraSchedule/latest/
 ```
 
-客户端默认通过 `hubproxy.khbit.cn` 镜像加速访问。
+该目录同时维护两个通道的元数据与安装包：`latest.yml`（Win7/8.1 兼容构建）与 `win10.yml`（Win10+ 新版 Electron 构建），客户端按系统自动选择。
+
+> [!NOTE]
+> 早期默认源是 `hubproxy.khbit.cn` 的 GitHub 代理，后改为对象存储镜像目录。客户端**启动时会自动把历史默认源迁移**到当前默认源（用户自行配置的其它更新源不受影响）；旧链接也不会失效——`hubproxy.khbit.cn` 上的历史地址会重定向到镜像目录。
 
 可通过托盘菜单「更新源（可选）」修改为自定义地址，需指向包含 `latest.yml` 的目录。

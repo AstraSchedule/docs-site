@@ -8,7 +8,7 @@
 
 课表按照作息表中配置的每日课程顺序排列。每节课显示科目简称，当前时间所在的课程或课间会被高亮标记。
 
-![简称、全称、下角标演示图片](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260718222224769.png)
+![简称、全称、下角标演示图片](https://cn-nb1.rains3.com/kuohublog-images/2026/09/9d9bdc6d39077b6bd291a6ec827b73ac.png)
 
 ## 三种高亮状态
 
@@ -48,7 +48,7 @@
 
 部分学校存在单双周甚至多周交替上课的情况（如单周上物理、双周上化学）。系统支持 **任意周** 轮换课程。
 
-![多周轮换页面展示](https://image-hk-1.oss-accelerate.aliyuncs.com/image-20260718225321632.png)
+![多周轮换页面展示](https://cn-nb1.rains3.com/kuohublog-images/2026/09/e50f17874fdcc2fc8b1a1423486aa59b.png)
 
 ## 托盘菜单"切换日程"
 
