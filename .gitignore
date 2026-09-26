@@ -18,3 +18,6 @@ doc_build/
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Obsidian 本地库（非项目内容）
+.obsidian/
