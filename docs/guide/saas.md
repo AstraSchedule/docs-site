@@ -28,7 +28,7 @@
 
 ### 1. 确定一个域名
 
-![image-20260704030036050](https://cn-nb1.rains3.com/kuohublog-images/2026/09/1d77ce5da3e30fa7ce6302cc506010e9.png)
+![image-20260704030036050](https://static.khbit.cn/2026/09/1d77ce5da3e30fa7ce6302cc506010e9.png)
 
 跟随提示要求，确定一个子域名。等待 **数秒** 服务端检查域名是否可用——如果不可用，大概率是已被他人占据，需要您重新起一个名字。
 
@@ -38,7 +38,7 @@
 
 ### 2. 设置管理员账户
 
-![image-20260704030342761](https://cn-nb1.rains3.com/kuohublog-images/2026/09/d27c6e2cd7f1c1e28811c3b6b05d63f1.png)
+![image-20260704030342761](https://static.khbit.cn/2026/09/d27c6e2cd7f1c1e28811c3b6b05d63f1.png)
 
 管理员账户拥有本租户的 **最高权限**，建议您设置 **不容易遗忘** 且 **尽量复杂** 的密码——当然，把密码记在纸上并妥善保管也可以。
 
@@ -46,7 +46,7 @@
 
 ### 3. 创建空白班级
 
-![image-20260704030859751](https://cn-nb1.rains3.com/kuohublog-images/2026/09/25f17ae082fd22efda3939ec36f2c808.png)
+![image-20260704030859751](https://static.khbit.cn/2026/09/25f17ae082fd22efda3939ec36f2c808.png)
 
 如图所示，您需要创建一个空白班级，我们建议您 **不要使用中文** ，因为这个字段也需要您手动输入到教室机器上。这个字段与子域名不同，您可以填写任意信息，这不会发生冲突或重复的问题，因为数据是隔离的。所以越简单越好。
 
@@ -62,17 +62,17 @@
 
 ### 4. 最终确认
 
-![image-20260704031829903](https://cn-nb1.rains3.com/kuohublog-images/2026/09/9d25d2c2a1eb4584a999ebe9254ce783.png)
+![image-20260704031829903](https://static.khbit.cn/2026/09/9d25d2c2a1eb4584a999ebe9254ce783.png)
 
 最终确认信息，确认无误并等待人机验证完成后点击“确认注册”即可。
 
-![image-20260704031923588](https://cn-nb1.rains3.com/kuohublog-images/2026/09/c675079f9b0cb04ab44234b2a74c2d9c.png)
+![image-20260704031923588](https://static.khbit.cn/2026/09/c675079f9b0cb04ab44234b2a74c2d9c.png)
 
 点击后会显示一个进度条，初始化的过程可能较慢，同样需要等待 **数秒** 。
 
 ### 5. 注册完成！
 
-![image-20260704032032187](https://cn-nb1.rains3.com/kuohublog-images/2026/09/c33bfeef38d8593a72c5564bf2363f3f.png)
+![image-20260704032032187](https://static.khbit.cn/2026/09/c33bfeef38d8593a72c5564bf2363f3f.png)
 
 等待出现注册成功的页面后，跟随提示操作即可。
 

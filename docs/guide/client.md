@@ -27,13 +27,13 @@
 >
 > 客户端也使用这个镜像目录用于软件更新，它由开发者自行维护。旧的 `hubproxy.khbit.cn` 下载链接会自动重定向到该目录，无需手动更换。
 
-![GitHub Release 页截图](https://cn-nb1.rains3.com/kuohublog-images/2026/09/b2c2fe5a175b54d9de7d9f4651675e28.png)
+![GitHub Release 页截图](https://static.khbit.cn/2026/09/b2c2fe5a175b54d9de7d9f4651675e28.png)
 
 ### 2. 配置云端服务地址
 
 客户端默认会显示来自 `class.getastra.cn` 的演示环境地址。
 
-![image-20260704033405462](https://cn-nb1.rains3.com/kuohublog-images/2026/09/2b0dc95dee948a528f8a7bcc96472aa4.png)
+![image-20260704033405462](https://static.khbit.cn/2026/09/2b0dc95dee948a528f8a7bcc96472aa4.png)
 
 客户端安装完成后，需要配置后端服务器地址才能拉取课表数据。
 
@@ -63,7 +63,7 @@ api.your-domain.com/
 
 客户端默认会显示来自演示环境 `39/2023/1` 的数据。
 
-![image-20260704033746908](https://cn-nb1.rains3.com/kuohublog-images/2026/09/6847fd9091ce63da2a0e42a7ce755422.png)
+![image-20260704033746908](https://static.khbit.cn/2026/09/6847fd9091ce63da2a0e42a7ce755422.png)
 
 同样的，您需要配置机器所在的班级，格式为
 
