@@ -51,6 +51,35 @@ AstraSchedule 的第一方流量都会带上固定标识，便于在 WAF 和访�
 
 > 💡 JS 质询通过后写入的 cookie **按域名隔离**（例如 `acw_sc__v2@njx.getastra.cn`）：在 `a.getastra.cn` 上解开的质询，不会让 `b.getastra.cn` 的请求通过。浏览器能自行解决页面级质询，但页面里发往其它域名的 fetch/XHR 不能靠它过关。
 
+## 📡 排障口径：响应来自边缘还是 FC
+
+对接 FC（函数计算）的域名，`/` 这类根路径**不能**用来说明 FC 层是否可用——它可能是边缘直接应答的。实测（2026-10，ESA）看响应头即可区分：
+
+| 响应头特征 | 响应方 |
+|------------|--------|
+| 带 `x-fc-request-id` | FC：请求确实打到了函数 |
+| 只有 `Server: ESA`、无 `x-fc-request-id` | 边缘：响应在 CDN/WAF 层就产生了，**没有经过 FC** |
+
+`X-Site-Cache-Status` 可作辅助判断：`HIT` 是边缘缓存，`DYNAMIC` 是回源（API 域名通常是 `DYNAMIC`）。实测结果：
+
+| 请求 | 响应方 | 依据 |
+|------|--------|------|
+| 静态站域名 `/`（Pages / OSS 站点，如 `getastra.cn`、`www.`、`i.`、`dev.`、`go.`） | 边缘 | `HIT`，无 `x-fc-request-id` |
+| API 域名 `/`（`class.`、`sys.`、`to.`、`njx.` 等） | FC | `DYNAMIC` + `x-fc-request-id`，返回 `{"message":"Hello World"}` |
+| 被 WAF 拦截或质询的请求（任意路径） | 边缘 | 403 或质询页，无 `x-fc-request-id` |
+
+> ⚠️ 所以 `/` 只是连通性探针。判断 FC 是否可用要打真实业务接口，并且必须带第一方标识（不带就会被 WAF 质询，拿到的仍然是边缘响应）：
+>
+> ```shell
+> curl -A "AstraSchedule/1.6.1" "https://class.getastra.cn/web/countdown?scope=39%2F2023%2F1"
+> # 200 {"data":[],"hasConfig":false,"loading":false}
+>
+> curl -A "AstraSchedule/1.6.1" "https://to.getastra.cn/api/check-subdomain/<名称>"
+> # 200 {"available":...,"providers":[...]}
+> ```
+>
+> 反过来，排查「客户端报错但 FC 日志里没有记录」时，先看响应里有没有 `x-fc-request-id`：没有就说明请求在边缘就被拦下或质询了，与 FC 无关。
+
 ## 🔰 极低成本方案（Cloudflare）
 
 极低成本方案使用 Cloudflare 免费套餐，已足够日常使用。
