@@ -14,7 +14,7 @@ AstraSchedule 的第一方流量都会带上固定标识，便于在 WAF 和访�
 |------|------|
 | 桌面客户端（课表、倒计时、WebSocket 等全部请求） | `User-Agent: AstraSchedule/<客户端版本>` |
 | 桌面客户端的自动更新 | 由内置更新器决定，**不带**上面这个标识 |
-| 注册服务（reg-to）访问后端 API | `User-Agent: AstraWeb/Reg` |
+| 注册服务（reg-to）访问后端 API | `User-Agent: AstraSchedule/Reg` |
 | 系统管理端（sys-backend）访问后端 API | `User-Agent: AstraSchedule/System` |
 | 浏览器里的网页（注册页、系统管理端、SaaS 用户端） | 无法自定义 UA，改用 `Referer` 标注第一方来源 |
 
@@ -40,15 +40,15 @@ AstraSchedule 的第一方流量都会带上固定标识，便于在 WAF 和访�
 
 ### 用 UA / Referer 识别扫描器（ESA 示例）
 
-`AstraSchedule` / `AstraWeb` 这两个 UA 前缀都来自第一方，其余 UA 基本是自动化扫描。只在「非浏览器域名」上做质询，并把第一方网页的 `Referer` 加入豁免，就不会影响正常网页：
+第一方 UA 统一以 `AstraSchedule` 开头（客户端带版本号、服务端带用途后缀），其余 UA 基本是自动化扫描。只在「非浏览器域名」上做质询，并把第一方网页的 `Referer` 加入豁免，就不会影响正常网页：
 
 | 配置项 | 值 |
 |--------|-----|
 | 规则名称 | 非标 UA 质询 |
-| 匹配表达式 | `not http.user_agent contains "AstraSchedule" and not http.user_agent contains "AstraWeb" and not http.host in {"你的网页端域名"} and not http.referer contains "https://你的网页端域名/"` |
+| 匹配表达式 | `not http.user_agent contains "AstraSchedule" and not http.host in {"你的网页端域名"} and not http.referer contains "你的网页端域名"` |
 | 动作 | JS 质询（或拦截） |
 
-把浏览器访问的域名全部放进 `http.host` 白名单；面向客户端和机器调用的域名（如 API 域名）则不豁免，让它们必须带 `AstraSchedule` / `AstraWeb`；跨域调用 API 的第一方网页（如注册页 → API 域名）靠 `http.referer` 豁免放行。再配一条「异常 UA 拦截」直接拦掉 `curl`、`python-requests`、`sqlmap`、`nikto` 这类工具签名与上面的质询规则互补——`Referer` 可以伪造，异常 UA 拦截是兜底。
+把浏览器访问的域名全部放进 `http.host` 白名单；面向客户端和机器调用的域名（如 API 域名）则不豁免，让它们必须带 `AstraSchedule` 前缀；跨域调用 API 的第一方网页（如注册页 → API 域名）靠 `http.referer` 豁免放行。再配一条「异常 UA 拦截」直接拦掉 `curl`、`python-requests`、`sqlmap`、`nikto` 这类工具签名与上面的质询规则互补——`Referer` 可以伪造，异常 UA 拦截是兜底。
 
 > 💡 JS 质询通过后写入的 cookie **按域名隔离**（例如 `acw_sc__v2@njx.getastra.cn`）：在 `a.getastra.cn` 上解开的质询，不会让 `b.getastra.cn` 的请求通过。浏览器能自行解决页面级质询，但页面里发往其它域名的 fetch/XHR 不能靠它过关。
 
