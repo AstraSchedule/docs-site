@@ -14,8 +14,7 @@ AstraSchedule 的第一方流量都会带上固定标识，便于在 WAF 和访�
 |------|------|
 | 桌面客户端（课表、倒计时、WebSocket 等全部请求） | `User-Agent: AstraSchedule/<客户端版本>` |
 | 桌面客户端的自动更新 | 由内置更新器决定，**不带**上面这个标识 |
-| 注册服务（reg-to）访问后端 API | `User-Agent: AstraSchedule/Reg` |
-| 系统管理端（sys-backend）访问后端 API | `User-Agent: AstraSchedule/System` |
+| 机器到机器的后端调用（reg-to、sys-backend） | `User-Agent: AstraSchedule/System` |
 | 浏览器里的网页（注册页、系统管理端、SaaS 用户端） | 无法自定义 UA，改用 `Referer` 标注第一方来源 |
 
 > 💡 客户端版本取自应用自身的版本号（例如 `AstraSchedule/1.6.1`），升级后自动跟随，无需手工维护。服务端调用（reg-to、sys-backend）不经过浏览器，可以自由设置 UA，因此一律带上第一方标识；它们发出的请求没有 `Referer`，**只能靠 UA 通过 WAF**。
