@@ -6,6 +6,52 @@
 
 Web 应用防火墙（WAF）和 CDN 是 AstraSchedule 外网部署方案的安全屏障。不同部署方案使用不同的安全组件，本章分别说明。
 
+## 🤖 官方第一方流量标识约定
+
+AstraSchedule 的第一方流量都会带上固定标识，便于在 WAF 和访问日志里把自家人与自动化扫描器区分开：
+
+| 来源 | 标识 |
+|------|------|
+| 桌面客户端（课表、倒计时、WebSocket 等全部请求） | `User-Agent: AstraSchedule/<客户端版本>` |
+| 桌面客户端的自动更新 | 由内置更新器决定，**不带**上面这个标识 |
+| 注册服务（reg-to）访问后端 API | `User-Agent: AstraWeb/Reg` |
+| 系统管理端（sys-backend）访问后端 API | `User-Agent: AstraSchedule/System` |
+| 浏览器里的网页（注册页、系统管理端、SaaS 用户端） | 无法自定义 UA，改用 `Referer` 标注第一方来源 |
+
+> 💡 客户端版本取自应用自身的版本号（例如 `AstraSchedule/1.6.1`），升级后自动跟随，无需手工维护。服务端调用（reg-to、sys-backend）不经过浏览器，可以自由设置 UA，因此一律带上第一方标识；它们发出的请求没有 `Referer`，**只能靠 UA 通过 WAF**。
+
+### 网页端：用 Referer 标注来源
+
+浏览器无法自定义 `User-Agent`——它是 fetch/XHR 规范里的 forbidden header name，设置后会被浏览器静默丢弃。因此注册页、系统管理端、SaaS 用户端这些跑在浏览器里的页面，请求头里永远是浏览器自己的 UA。
+
+替代方案是在页面里声明 referrer 策略，让跨域接口请求带上第一方 `Referer`，再由 WAF 按 `Referer` 放行：
+
+```html
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+```
+
+`meta` 标签会覆盖响应头里的 `Referrer-Policy`（例如 ESA Pages / OSS 默认的 `same-origin`，跨域时一个字节的 Referer 都不发），并且 CORS 预检 `OPTIONS` 也会带上 `Referer`（Chrome 实测）。
+
+> ⚠️ 实测结论（2026-10，ESA）：
+>
+> - ESA 的「修改入站请求头」可以在边缘改写 `User-Agent`，但**对 WAF 判定没有影响**——WAF 用的是客户端发来的原始请求头（实测：对某路径改写 UA 后，该请求依然会被基于 UA 的自定义规则质询）。边缘改写只影响源站与日志里看到的 UA。
+> - WAF 表达式**不支持自定义请求头字段**（`http.request.headers["x-..."]` 报 `Http.Request.Headers.NotSupport`），「自定义标头标注来源」这条路走不通；`Referer` 是浏览器可用、WAF 也可判定的字段。
+> - `http.referer` 在 `http_custom` 阶段只支持 `contains` 一类比较，`lower()` / `starts_with()` 会报 `Expression.Invalid`。
+
+### 用 UA / Referer 识别扫描器（ESA 示例）
+
+`AstraSchedule` / `AstraWeb` 这两个 UA 前缀都来自第一方，其余 UA 基本是自动化扫描。只在「非浏览器域名」上做质询，并把第一方网页的 `Referer` 加入豁免，就不会影响正常网页：
+
+| 配置项 | 值 |
+|--------|-----|
+| 规则名称 | 非标 UA 质询 |
+| 匹配表达式 | `not http.user_agent contains "AstraSchedule" and not http.user_agent contains "AstraWeb" and not http.host in {"你的网页端域名"} and not http.referer contains "https://你的网页端域名/"` |
+| 动作 | JS 质询（或拦截） |
+
+把浏览器访问的域名全部放进 `http.host` 白名单；面向客户端和机器调用的域名（如 API 域名）则不豁免，让它们必须带 `AstraSchedule` / `AstraWeb`；跨域调用 API 的第一方网页（如注册页 → API 域名）靠 `http.referer` 豁免放行。再配一条「异常 UA 拦截」直接拦掉 `curl`、`python-requests`、`sqlmap`、`nikto` 这类工具签名与上面的质询规则互补——`Referer` 可以伪造，异常 UA 拦截是兜底。
+
+> 💡 JS 质询通过后写入的 cookie **按域名隔离**（例如 `acw_sc__v2@njx.getastra.cn`）：在 `a.getastra.cn` 上解开的质询，不会让 `b.getastra.cn` 的请求通过。浏览器能自行解决页面级质询，但页面里发往其它域名的 fetch/XHR 不能靠它过关。
+
 ## 🔰 极低成本方案（Cloudflare）
 
 极低成本方案使用 Cloudflare 免费套餐，已足够日常使用。
