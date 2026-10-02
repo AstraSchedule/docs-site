@@ -13,6 +13,16 @@
 - 数据库是单个文件，路径由 `config.toml` 的 `db.path` 指定（模板默认 `./data/astra_schedule.db`）
 - 备份 = 复制文件。建议先停止服务或使用文件快照，避免复制到写入中的文件（见[备份策略](./backup)）
 
+### 日志模式：拒绝 WAL
+
+本项目**不使用** SQLite 的 WAL（Write-Ahead Logging）模式，服务启动时会检查库头：
+
+- 检测到 WAL 库时**自动转回**默认的 rollback journal 模式（`PRAGMA journal_mode=DELETE`），转换失败才拒绝启动并打印离线转换命令
+- WAL 依赖的 `-shm` 共享内存不会跨 NFS 客户端共享，多个服务（如 usr-backend 与 sys-backend）经 NFS 打开同一库时会报 `database disk image is malformed` 甚至损坏数据；本项目读多写少，WAL 的并发写收益也用不上
+- 如需手工转换：停掉**所有**后端后执行 `sqlite3 <db文件> "PRAGMA journal_mode=DELETE;"`
+
+因此备份时直接 `cp` 数据库文件即可，无需关心 `-wal`/`-shm` 附属文件（正常运行的库根本不会产生它们）。
+
 ### 文件增长与压缩
 
 SQLite 删除数据后文件大小不会自动缩小。若发现数据库文件异常膨胀（长期频繁写入后），可执行压缩：

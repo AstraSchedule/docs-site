@@ -170,6 +170,8 @@ secret = ""             # 内部服务间调用密钥，通过 X-Internal-Secret
 | `name` | string | MySQL 必填 | — | MySQL 数据库名 |
 | `path` | string | SQLite 必填 | — | SQLite 数据库文件路径 |
 
+> SQLite 库固定运行在 rollback journal 模式：服务启动时检测到 WAL 库会自动转换，失败才拒绝启动（原因与手工转换命令见[数据库维护](./maintenance)）。
+
 ### `[log]` — 日志配置
 
 | 字段 | 类型 | 必填 | 默认值 | 说明 |

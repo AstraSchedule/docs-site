@@ -53,7 +53,7 @@ sys-backend/
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | GET | `/web/tenants` | 列出所有租户 |
-| POST | `/web/tenants` | 创建租户（含 Cloudflare DNS 配置） |
+| POST | `/web/tenants` | 创建租户（含阿里云 ESA DNS 配置） |
 | DELETE | `/web/tenants/:id` | 删除租户 |
 | POST | `/web/tenants/:id/ban` | 封禁租户 |
 | POST | `/web/tenants/cleanup` | 清理租户数据 |
@@ -120,9 +120,40 @@ token = "change_this_to_a_secure_token"
 
 [log]
 debug = false
+
+[esa]
+# 租户 DNS 管理（阿里云 ESA，Cloudflare 已废弃）
+# 建议使用只授予 esa 记录读写的最小权限 RAM 身份，不要用主账号 AK
+access_key_id = ""
+access_key_secret = ""
+site_id = 0
+site_name = "getastra.cn"
+target = "astrasaas.origin-pool.getastra.cn"   # 回源必须指向「源地址池」（source_type=OP），避免自环
+proxied = true
+biz_name = "api"
+source_type = "OP"
+ttl = 1
+endpoint = "esa.cn-hangzhou.aliyuncs.com"
+tenant_comment = "SaaS"   # 租户记录备注标记，与 class/to/sys 等基础设施记录区分
+
+[mtls]
+# 调用 usr-backend 的出站 mTLS 客户端证书（留空不使用）
+tls_cert = ""
+tls_key = ""
+tls_ca_cert = ""
 ```
 
 > 完整配置请以 `sys-backend/config.template.toml` 为准。`[astra]` 段的 `internal_secret` 必须与 usr-backend 的 `internal.secret` 一致，`token` 用于系统端签发 JWT。
+>
+> 租户 DNS 由 Cloudflare 迁移到阿里云 ESA 后，函数计算的环境变量键名相应改为 `ASTRA_ESA_*` / `ASTRA_MTLS_*`（旧的 `ASTRA_CLOUDFLARE_*` 已失效）。
+
+## 安全加固
+
+- **登录失败限流**：`/web/auth/login` 按 IP + 用户名维度做内存限流，连续失败会被暂时拒绝，缓解暴力破解
+- **租户创建**：`subdomain` 做格式校验（封堵 DNS 注入 / 通配符劫持）；`CompleteTenant` 创建的默认管理员带 `must_change_pwd`，首次登录强制改密
+- **出站调用 usr-backend**：带 `User-Agent: AstraSchedule/System`（WAF 第一方标识），响应不是 `application/json` 时判为失败——WAF 质询页返回 `200 + text/html`，不能只看状态码
+- **数据表操作**：`/web/data/*` 的表名来源收敛到白名单；删除单表依赖上述非 JSON 守卫，避免「数据没删、界面报成功」
+- **SQLite**：`db` 与 `sys_db` 打开前检查库头，WAL 库自动转回 rollback journal，失败才拒绝启动（NFS 跨机共享场景，见[数据库维护](../administrator/maintenance)）
 
 ## 启动
 

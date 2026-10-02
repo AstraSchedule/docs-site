@@ -40,6 +40,8 @@ cp /tmp/data/astra.db /tmp/data/astra-backup-$(date +%Y%m%d).db
 # 具体下载方式取决于你的 Serverless 平台
 ```
 
+> 本项目运行的库固定为 rollback journal 模式（服务启动时会把 WAL 库自动转回，见[数据库维护](./maintenance)），不存在 WAL 的 `-wal`/`-shm` 附属文件，单文件复制即是完整备份。
+
 ### 备份频率建议
 
 | 场景 | 建议频率 |

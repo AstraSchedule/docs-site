@@ -21,7 +21,7 @@ SaaS 模式下，用户通过注册页自助开通租户。本页说明注册中
 浏览器                 reg-to                    usr-backend
    │                     │                          │
    │─ 1. POST /api/sign-token ─▶│                   │
-   │    （Turnstile 令牌）       │                   │
+   │    （ESA 验证码验签参数）    │                   │
    │◀──── 注册 JWT（10 分钟）────│                   │
    │                     │                          │
    │─ 2. POST /web/admin/register-tenant ──────────▶│
@@ -46,7 +46,10 @@ SaaS 模式下，用户通过注册页自助开通租户。本页说明注册中
 |------|------|
 | `VITE_API_BASE` | 注册服务地址，如 `https://to.getastra.cn` |
 | `VITE_ASTRA_API_BASE` | Astra 后端地址，如 `https://class.getastra.cn` |
-| `VITE_TURNSTILE_SITEKEY` | Cloudflare Turnstile 站点密钥 |
+| `VITE_CAPTCHA_PREFIX` | ESA AI 验证码身份标（与场景 ID 配对使用） |
+| `VITE_CAPTCHA_SCENE_ID` | ESA AI 验证码场景 ID |
+
+> 人机验证已由 Cloudflare Turnstile 切换为 **ESA AI 验证码**：验证在 ESA 边缘完成，前端通过回调拿到 `captchaVerifyParam`，随注册请求以查询参数 `captcha_verify_param` 与请求头 `captcha-verify-param` **两种形式同时携带**（ESA 文档两处写法不一致，双写规避边缘取不到令牌）。生产构建缺少身份标/场景 ID 时，页面会提示错误并禁用注册提交。
 
 > [!WARNING]
 > 生产构建必须显式设置 `VITE_API_BASE`。留空时请求会打到同源地址，注册流程无法完成。
@@ -59,7 +62,6 @@ SaaS 模式下，用户通过注册页自助开通租户。本页说明注册中
 |------|------|------|
 | `PORT` | | 监听端口，默认 `9002` |
 | `GIN_MODE` | | 值为 `release` 时进入生产模式，其它值视为开发模式 |
-| `TURNSTILE_SECRET_KEY` | ✅ 生产 | Turnstile 服务端密钥，缺失时注册类接口直接拒绝 |
 | `ASTRA_API_BASE` | ✅ | Astra 后端地址 |
 | `ASTRA_API_SECRET` | ✅ | 与 Astra 后端 `config.toml` 的 `[internal] secret` **必须一致**；同时用于 JWT 签名与口令加密密钥派生 |
 | `TLS_CERT` / `TLS_KEY` | | 调用 Astra 后端的 mTLS 客户端证书，支持文件路径或 PEM 文本 |
@@ -302,8 +304,8 @@ reg-to -sync-dns -from class.getastra.cn -apply
 
 ## 安全注意事项
 
-- 生产环境必须配置 `TURNSTILE_SECRET_KEY`。缺失时注册类接口会**直接拒绝**而不是跳过验证。
-- `env.sh` / `config.toml` 含有 Cloudflare API Token、mTLS 私钥、内部共享密钥等敏感信息，**禁止提交到仓库**。
+- 人机验证在 **ESA 边缘**完成，`reg-to` 只校验请求是否携带验签参数（缺失即拒绝，fail-closed），本身不持有验证码密钥。ESA 侧的验证码规则必须开启「拦截空 Token 请求」，且 `/api/sign-token` 与 `/api/register` **两条规则都要开**——漏配 `/api/register` 等于留下一条「带任意非空参数即可创建租户」的旁路；两端都部署完成后再开启该拦截。
+- `env.sh` / `config.toml` 含有 DNS 服务商凭据、mTLS 私钥、内部共享密钥等敏感信息，**禁止提交到仓库**。
 - 子域名默认屏蔽了一批保留名（`www`、`api`、`admin`、`i`、`to`、`class` 等），避免抢占既有服务或引发钓鱼风险。可用 `RESERVED_SUBDOMAINS` 覆盖。
 - 建议在函数计算网关或反向代理层为注册接口增加速率限制。
 

@@ -1,14 +1,16 @@
-> [!TIP]
->
-> 本页配图较少，待维护者补充。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
-
 # 仪表盘
 
 仪表盘是进入管理后台后的默认首页，提供系统实时运行状态概览。
 
+登录页（输入后端地址、用户名与密码；SaaS 版会显示租户后端地址输入框）：
+
+![管理后台登录页](https://static.khbit.cn/2026/10/c85c48abe99979c837928eacc43a1d98.png)
+
 ## Serverless 模式
 
 由于 Serverless 本身的特性，服务是无状态的，所以没有下面这些数据。取而代之的是 Logo 和一言。
+
+![仪表盘总览（Serverless 模式）](https://static.khbit.cn/2026/10/591f3420eac9fc2ef0eaa3c99c53d3fc.png)
 
 ## 今日统计
 

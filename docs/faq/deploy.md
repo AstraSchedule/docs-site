@@ -1,3 +1,7 @@
+> [!WARNING]
+>
+> 本页已随近期变更更新，部分内容尚未经人工复核。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
+
 > [!TIP]
 >
 > 本页配图较少，待维护者补充。如果无法解决问题或需要协助部署，可邮箱联系：kuohu@getastra.cn
@@ -38,6 +42,16 @@
    - 进入 Security → WAF → Custom rules
    - 创建规则，操作为「跳过」→ 选择被误判的托管规则
    - 将匹配范围限制为你的 API 域名
+
+## 接口返回的不是 JSON，而是一段 HTML/JS（质询页）？
+
+请求被 ESA/CDN 边缘的 WAF 拦下了——边缘返回 `200 + text/html` 的 JS 质询页而不是 403，浏览器外的客户端（脚本、curl、后端服务）看不懂质询，表现为「拿到一堆 HTML」或「数据格式错误」。处理方式：
+
+1. 确认请求是否带第一方标识：桌面客户端应带 `User-Agent: AstraSchedule/<版本>`，服务间调用带 `AstraSchedule/System`，浏览器页面靠 `Referer`（见[运维手册 · 第一方流量标识](../administrator/waf-cdn)）
+2. 手工验证：`curl -A "AstraSchedule/1.6.1" <接口地址>`，返回 JSON 说明只是缺标识
+3. 调整 WAF 规则：把对应域名/来源加入豁免，或给对应 UA 开质询白名单
+
+注意区分响应来自边缘还是源站：没有 `x-fc-request-id` 的响应产生于边缘（详见[排障口径](../administrator/waf-cdn)）。
 
 ## 函数计算冷启动很慢，影响使用体验？
 

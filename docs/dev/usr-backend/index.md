@@ -63,6 +63,16 @@ usr-backend/
 
 4 类规则按优先级叠加：COMPENSATION → TIMETABLE → SCHEDULE → ALL。支持多级作用域：ALL → school → school/grade → school/grade/class。
 
+## 客户端课表接口与版本协商
+
+- `GET /:school/:grade/:class?version=<t>:<w>[:<e>]`：返回 `daily_class`（整周 7 格）+ `version` + `supportWebSocket`
+- 服务端一次解析**整周**（今天按真实时刻、后 6 天按各自零点），按天求值的自动任务边界统一给到第 7 天末，cron 保留命中点
+- `304` 只比对 `dataVersion` 与 `weekNumber`（前两段），第三段 `e` 参与输出但不参与校验，客户端可不携带
+- 版本来源是作用域内所有会影响响应的 `UpdatedAt`（课表/作息/科目/客户端配置/自动任务/倒数日）+ 全局版本行（删除操作用 `BumpDataVersion` 推进）
+- 写路径在响应头声明 `X-Astra-Purge-Scopes`，供边缘函数失效对应 KV 键
+
+版本协商、边缘缓存与失效协议的完整说明见[系统架构 · 边缘缓存架构](../architecture)。
+
 ## 本地开发环境搭建
 
 1. 安装 [Go 1.26+](https://go.dev/dl/) 与 Git
